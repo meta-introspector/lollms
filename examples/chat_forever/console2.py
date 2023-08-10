@@ -3,6 +3,8 @@ import sys
 from collections import deque
 from pathlib import Path
 import json
+import re
+
 def flatten_json(json_obj, parent_key='', separator='.'):
     items = {}
     for k, v in json_obj.items():
@@ -22,30 +24,41 @@ flatten=flatten_json(modes)
 with open("flattened.json","w") as fo:
   json.dump(flatten,fo,indent=2,)
 
-import re
 
+def split_fibers(fibers, max_words=32):
+    # Split each fiber into chunks of up to max_words words
+    sfibers = []
+    for fiber in fibers:
+        words = fiber.split()
+        for i in range(0, len(words), max_words):
+            chunk = ' '.join(words[i:i + max_words])
+            sfibers.append(chunk)
+    return sfibers
 
 def refactor_into_fiber_bundles(lines, bundle_size):
     bundles = []
-    current_bundle = []
-    
+
+    temp = []
     for line in lines:
         # Split the line into fibers
-        fibers = line.split('.')
-
-        fibers = line.split('.')
-
+        #fibers = line.split('.')
+        fibers = re.split(r"[\.\n]", line)
+        
         # Filter out empty lines or lines with only whitespace
         fibers = [fiber.strip() for fiber in fibers if re.search(r'\S', fiber)]
 
         # Add filtered fibers to the current bundle
-        current_bundle.extend(fibers)
-        
+        temp.extend(split_fibers(fibers))
+    # now lete
+    current_bundle = []
+    #print(temp)
+    for line in temp:
+        current_bundle.append(line)
+
         # Check if the current bundle size exceeds the desired bundle size
         if len(current_bundle) >= bundle_size:
             # Add the current bundle to the list of bundles
             bundles.append(current_bundle)
-            
             # Start a new bundle
             current_bundle = []
     
@@ -65,7 +78,10 @@ class MyConversation(Conversation):
       lines = file.readlines()
 
       lines = refactor_into_fiber_bundles(lines, 2)
-            
+
+      with open("debug.txt","w") as fo:
+          for line in lines:
+              fo.write("|\n".join(line))
       for line in lines:
         self.text_ring_buffer.append(self.personality.user_message_prefix + "\n".join(line))
 
