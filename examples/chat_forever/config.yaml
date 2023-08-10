@@ -1,0 +1,33 @@
+active_personality_id: 0
+audio_in_language: en-US
+audio_out_voice: English United States
+audio_pitch: 1
+auto_speak: true
+auto_update: true
+binding_name: gptq
+config: local_config
+ctx_size: 8192
+db_path: /home/mdupont/ggml/data/database.db
+debug: true
+discussion_prompt_separator: '!@>'
+enable_gpu: true
+host: 0.0.0.0
+model_name: llama2-7b-chat-codeCherryPop-qLoRA-GPTQ
+n_predict: 1056
+n_threads: 8
+override_personality_model_parameters: true
+personalities:
+- english/coding/introspector
+port: 9600
+repeat_last_n: 40
+repeat_penalty: 1.2
+seed: -1
+silenceTimer: 5000
+temperature: 3.3
+top_k: 150
+top_p: 0.95
+use_user_name_in_discussions: false
+user_avatar: default_user.svg
+user_description: ''
+user_name: user
+version: 16
