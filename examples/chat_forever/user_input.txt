@@ -1,40 +1,29 @@
+-- haskell code for core proof types of coq extracted recursivly via reflection via metacoq
 module Server.MetaCoq.TestMeta6 where
-
--- 0 parmeters, base level
+-- the first types of base level 0 have no parameters, they are foundational
 data Positive =  XI Positive  | XO Positive  | XH 
-data Byte = X00 | X01| YYSpliceByteListIntoHereYY | XHH --- 
--- 1 dep
+data Byte = X00 | X01| YYSpliceByteListIntoHereYY | XHH
+--level one have one one dependancy each 
 data N =   N0  | Npos Positive  
 data Z =   Z0 | Zpos Positive | Zneg Positive
 data MyString =   EmptyString | String Byte MyString
 data Nat =  O  | S Nat  
-
--- 2 dep
+-- level 2 dependencies
 data TNumRel =   Le Z | Eq0
 data UniversalLevel =    Lzero | Level MyString | Lvar Nat
 data Prod a b =    Pair a b
---  3 dep
+-- 3 dependencies
 type SortedLevels = Prod UniversalLevel TNumRel
-
--- 4 dep
+-- 4 dependencies
 type TProd_SortedLevels_UniversalLevel = Prod SortedLevels UniversalLevel
-
 type Ident = MyString
 type Dirpath = List Ident
 type Kername = Prod Modpath Ident
 data Modpath =   MPfile Dirpath | MPbound Dirpath Ident Nat | MPdot Modpath Ident
-
-
-
 data Tree0 =   Leaf0 | Node0 T0 Tree0 (TProd_SortedLevels_UniversalLevel) Tree0
-
 data TTree =   Leaf | Node T0 Tree UniversalLevel Tree  
-
-
-
 type OKername = Option Kername
 data TMk_retroknowledge_Kername_Kername_37 = Mk_retroknowledge OKername OKername
-
 data Def term =    Mkdef Binder_annot_Name term term Nat
 data Relevance =   Relevant | Irrelevant  
 data BinderAnnot a =   MkBindAnn a Relevance 
@@ -43,11 +32,8 @@ data Name = NAnon | NNamed Ident
 type Binder_annot_Name = Binder_annot Name -- Binder_annot_Name 
 type BinderAnnotName = BinderAnnot Name  -- same
 type Binder_annot  = BinderAnnot
-
 data Projection_body =   Build_projection_body Ident Relevance Term
 data Constructor_body =   Build_constructor_body Ident Context (List Term) Term Nat 
-
-
 type TNonEmptyLevelExprSet22 = NonEmptyLevelExprSet
 type NonEmptyLevelExprSet =   TListElt1_syn2_21-- singleton inductive, whose constructor was Build_nonEmptyLevelExprSet
 data TLevelProps_2 =   LProp0 | LSProp0 | LType TNonEmptyLevelExprSet22
@@ -56,65 +42,43 @@ data One_inductive_body =   Build_one_inductive_body Ident Context TLevelProps T
 --    - This data type represents a single inductive type definition in Coq.
 --    - It includes information about the identifier, context, type level properties, term, allowed eliminations, constructors, projections, and relevance of the inductive type.
 --    - Inductive types are a fundamental concept in Coq, allowing the definition of data structures that support rigorous reasoning and proofs.
-
-
 -- 4. `ListOne_inductive_body`:
 --    - This data type represents a list of `One_inductive_body` instances.
 --    - Lists are a common data structure in functional programming, and in the context of Coq, they are likely used to group and manage multiple inductive type definitions.
-
 data MutualInductiveBody =   Build_mutual_inductive_body Recursivity_kind Nat Context (List One_inductive_body)   Universes_decl (Option (List TVariance_36))
 -- 2. `Mutual_inductive_body`:
 --    - This data type represents a mutually recursive set of inductive types in Coq.
 --    - It contains information about the recursivity kind, context, list of `One_inductive_body` instances, universe declarations, and optional type variance information.
 --    - Mutually recursive definitions allow multiple data types to refer to each other, enabling the specification and verification of complex systems.
-
 type Mutual_inductive_body = MutualInductiveBody
 data RecursivityKind =   Finite | CoFinite | BiFinite
 -- 2. `Context`:
 --    - Represents a list of `Context_decl Term` instances.
 --    - A context in Coq consists of a list of declarations, which can include variable names, their optional types, and their bound term.
-
 -- 3. `Context_decl term`:
 --    - Represents a declaration in a Coq context.
 --    - It includes information about a binder (variable name) with annotations, an optional type, and the bound term.
-
 type ListContext_declTerm = List Context_declTerm
 type Context = List (Context_decl Term)
 type Context_declTerm = Context_decl Term
 data Context_decl term =   Mkdecl Binder_annot_Name (Option term) term
-
-
-
-
 data Constant_body =   Build_constant_body Term (Option Term) Universes_decl Relevance
-
 data Global_env =  Mk_global_env TTreeTree0Pair Global_declarations TMk_retroknowledge_Kername_Kername_37
 --  Mk_global_env T35 Global_declarations T37
 --type TTreeTree0Pair = Prod TTree TTree
 type TTreeTree0Pair = Prod TTree Tree0
-
 type T4 = Tree
 type T_0 = T4
 type T10 = T_0
-
 --type T35=TTreeTree0Pair
 type T32 = T_4
 type T_4 = T26
 type T26 = Tree0
 --type T35 = Prod T10 T32
-
-
-
 type Global_declarations = List (TGlobalDeclaration)
 type TGlobalDeclaration = Prod Kername Global_decl
 data Global_decl =    ConstantDecl Constant_body  | InductiveDecl Mutual_inductive_body
-
-
-
-
-
 data Bool =   True | False  
-
 data Comparison =   Eq | Lt | Gt  
 
 
