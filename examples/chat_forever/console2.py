@@ -4,6 +4,8 @@ from collections import deque
 from pathlib import Path
 import json
 import re
+BUNDLES=8
+MAXWORDS=256
 
 def flatten_json(json_obj, parent_key='', separator='.'):
     items = {}
@@ -25,7 +27,7 @@ with open("flattened.json","w") as fo:
   json.dump(flatten,fo,indent=2,)
 
 
-def split_fibers(fibers, max_words=64):
+def split_fibers(fibers, max_words=MAXWORDS):
     # Split each fiber into chunks of up to max_words words
     sfibers = []
     for fiber in fibers:
@@ -77,7 +79,7 @@ class MyConversation(Conversation):
     with open(file_path, 'r') as file:
       lines = file.readlines()
 
-      lines = refactor_into_fiber_bundles(lines, 4)
+      lines = refactor_into_fiber_bundles(lines, BUNDLES)
 
       with open("debug.txt","w") as fo:
           for line in lines:
@@ -97,7 +99,7 @@ class MyConversation(Conversation):
       line = feed_text = self.text_ring_buffer.popleft()
       
       count = count + 1
-      print(f"json.__input_line__{count:05} = {json.dumps(line.strip())};")
+      print(f"json.line.{count:05}.__input_line__ = {json.dumps(line.strip())};")
       for name,key in flatten.items():
           #print("DEBUG",name, key)
           person = " For the next task assume the following role: " + name
@@ -106,7 +108,13 @@ class MyConversation(Conversation):
           #print("DEBUG:", len(data), data)
           output = self.safe_generate(data,
                                     callback=self.callback)
-          print(f"json.{name}{count:05} = {json.dumps(output.strip())};")
+          print(f"json.line.{count:05}_A.{name} = {json.dumps(output.strip())};")
+          output2 = self.safe_generate("Please evalute this critially:{output}",
+                                    callback=self.callback)
+          print(f"json.line.{count:05}_B.{name} = {json.dumps(output.strip())};")
+          output3 = self.safe_generate("Please reflect over: {output2} from {output} for {line} in role {person}",
+                                    callback=self.callback)
+          print(f"json.line.{count:05}_C.{name} = {json.dumps(output.strip())};")
 
 
   def callback(self, text, type=None, metadata: dict = {}):
