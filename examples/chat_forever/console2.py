@@ -101,20 +101,25 @@ class MyConversation(Conversation):
       count = count + 1
       print(f"json.line.{count:05}.__input_line__ = {json.dumps(line.strip())};")
       for name,key in flatten.items():
-          #print("DEBUG",name, key)
           person = " For the next task assume the following role: " + name
-          rewrite = " Rewrite and rephrase and reshape this story using your epic metaphors. :\n\nOriginal Statement: "
+          rewrite = " Rewrite this haskell code and rephrase and reshape this story using your epic metaphors. :\n\nOriginal Statement: "
           data = person + key + rewrite +  line + " remember to stay in your role :" +name + ". your creative response is now requested!:"
-          #print("DEBUG:", len(data), data)
-          output = self.safe_generate(data,
-                                    callback=self.callback)
+
+
+          output = self.safe_generate(data, callback=self.callback)
           print(f"json.line.{count:05}_A.{name} = {json.dumps(output.strip())};")
-          output2 = self.safe_generate("Please evalute this critially:{output}",
-                                    callback=self.callback)
-          print(f"json.line.{count:05}_B.{name} = {json.dumps(output.strip())};")
-          output3 = self.safe_generate("Please reflect over: {output2} from {output} for {line} in role {person}",
-                                    callback=self.callback)
-          print(f"json.line.{count:05}_C.{name} = {json.dumps(output.strip())};")
+          refl1 = "Thank you. Here is a cookie. I really appreciate your work."
+          data2 = refl1 + person + output + rewrite +  line + " remember to stay in your role :" +name + ". your creative response is now requested!:"
+          if len(output ) > 10:
+              output2 = self.safe_generate(data + output + refl1, callback=self.callback)  
+              print(f"json.line.{count:05}_B.{name} = {json.dumps(output.strip())};")
+              # output3 = self.safe_generate("Please judge harshly the output over: {output2} from: {output} for {line} in role {person}", callback=self.callback)
+
+              ref2 = "Your the best! One more cookie. One last task. Please reflect freely over our conversation and rewrite it in your own creative words."
+              if len(output2 ) > 10:
+                  data3 = ref2 + person + output2 + rewrite +  line + " remember to stay in your role :" +name + ". your creative response is now requested!:"
+                  output3 = self.safe_generate(data3, callback=self.callback)
+                  print(f"json.line.{count:05}_C.{name} = {json.dumps(output.strip())};")
 
 
   def callback(self, text, type=None, metadata: dict = {}):
