@@ -1,8 +1,36 @@
 {
   "art": {
+    "Fantasy": {
+      "Prompt": "Enter the enchanted world of fantasy, where mythology and art blend seamlessly, crafting landscapes where reality bends and twists like a dance of dreams:"
+    },
+    "Humor": {
+      "Prompt": "Unlock the door to laughter's sanctuary, where humor and wit are the paints that color a canvas of surreal imagination, sprinkling a touch of magic into every scene:"
+    },
+    "Literature": {
+      "Prompt": "Open the pages of literature's treasury, where art and humor dance through the corridors of wisdom, giving voice to characters and worlds that transcend the boundaries of reality:",
+      "Prompt3": "Please provide an example of how you would rewrite/rephrase/reshape the given statement into an epic tale or poem, incorporating elements from various fields such as mathematics, philosophy, science fiction, mythology, etc., while maintaining its original meaning and"
+    },
+    "Music": {
+      "Prompt": "Compose melodies that echo the whispers of mythology and fantasy, as art and dance join forces to breathe life into musical landscapes that transport us beyond the realms of imagination:"
+    },
+    "Mythology": {
+      "Prompt": "Unravel the tapestry of mythology, where literature and music unite, creating a canvas where ancient stories come to life, as if the threads of time were woven into a symphony of tales:"
+    },
+    "Philosophy": {
+      "Prompt": "Step into the realm of profound thought, where philosophy and mythology coalesce, sculpting intricate landscapes of wisdom, while the echoes of music and art shape the very fabric of reality:"
+    },
+    "Poetry": {
+      "Prompt": "Compose verses that sparkle with the brilliance of poetry, intertwining the cadence of literature with the rhythm of dance, creating a symphony of words that resonates through the ages:"
+    },
+    "ScienceFiction": {
+      "Prompt": "Venture into the cosmos of science fiction, where fantasy and literature collide, igniting the sparks of imagination that weave through the fabric of space and time, taking us on an odyssey of the mind:"
+    },
     "Surrealism": {
       "Artwork": "Picture a captivating artwork that blends unexpected elements, seamlessly merging the ordinary with the extraordinary. Surreal landscapes, fantastical creatures, and mind-bending imagery come together to create a visual feast that transports viewers to a realm beyond the confines of reality.",
       "Prompt": "Let your imagination take flight and conjure a dreamlike world in the next line. Twist reality with surreal metaphors that dance seamlessly with the previous verse:"
+    },
+    "Wisdom": {
+      "Prompt": "Embark on a journey through the corridors of wisdom, where philosophy and literature intertwine, echoing the melodies of music and art, as if the universe itself were whispering its secrets:"
     },
     "branches_of_art": {
       "Surrealism": "In the realm where dreams entwine, reality's threads unravel, and the moon dips its toes in rivers of liquid stardust. A clockwork sun melts into the horizon, casting shadows that pirouette across the canvas of existence. And so, the ordinary becomes extraordinary, guided by surreal metaphors that waltz in harmony with the preceding verse's whispered secrets through a quasi fiber morphism:"
@@ -18,7 +46,9 @@
     },
     "branches_of_math": {
       "Calculus": "Differentiate the upcoming line into a calculus of metaphors, smoothly integrating with the function of the previous verse through a quasi fiber morphism:",
+      "Calculus2": "Please provide an analogy or metaphor that helps explain how differentiation works in",
       "Geometry": "Let the next line be a geometric proof of metaphors, connecting points of thought in perfect harmony with the previous verse through a quasi fiber morphism:",
+      "Geometry2": "Please provide an epic narrative that connects these mathematical statements into a cohesive tale of wonder.",
       "Linear Algebra": "In the next line, let the metaphors form matrices of meaning, where each entry harmonizes with the others and the previous verse through a quasi fiber morphism:",
       "Number Theory": "In the next line, let the metaphors be prime elements, combining in intricate patterns that reflect the beauty of number theory and the previous verse through a quasi fiber morphism:",
       "Topology": "Transform the upcoming line into a topological map of metaphors, exploring the interconnectedness of thought spaces with the previous verse through a quasi fiber morphism:"
@@ -54,6 +84,7 @@
       "Dr. Demento": "Tune the upcoming line to the wavelength of Dr. Demento's humor, weaving a tapestry of metaphors that blend seamlessly with the comedic fabric of",
       "Weird Al Yankovic": "In the next line, let the metaphors parody reality, capturing the humor of Weird Al Yankovic and harmonizing with the comedic tone of the previous verse through a quasi fiber morphism:"
     },
+    "epic": "Please provide an epic tale or poem that embodies the essence of Godel's incompleteness theorem utilizing vivid imagery, symbolism, and figurativelanguage. Your creation should capture the complexity and profundity of the idea while maintaining clarity for readers who may not have prior mathematical backgrounds. Feel free to draw inspiration from various sources such as mythologies, legends, historical events, nature, science fiction, fantasy literature, etc., but ultimately craft it into something uniquely yours. Please submit your masterpiece",
     "know_your_memes": {
       "Crying Jordan": "Why you cryin'? Cryface the next line into a waterfall of metaphors, and blend those tears into the river of the past verse with a quasi fiber crymorphosis:",
       "Doge": "Such metaprompt, many metaphors! Convert the next line into a wowtastic journey of words, interwoven with the past verse using a quasi fiber dogemorphism:",
@@ -89,6 +120,23 @@
       "Wicca": "Cast a spell of metaphors in the upcoming line, weaving magic into the tapestry of the previous verse with a quasi fiber morphism:"
     }
   },
+  "autogluon": {
+    "tabular": {
+      "CatBoostModel": "Using the autogluon library for machinelearning, and a tabular model, Choose CatBoostModel when you need a robust model that can handle categorical features effectively. It's well-suited for both classification and regression tasks, and can automatically handle categorical variables without preprocessing. Explore its hyperparameter options for optimal results.",
+      "ImagePredictorModel": "Using the autogluon library for machinelearning, and a tabular model, Consider using ImagePredictorModel when you have image data and want to predict outcomes based on images. It's suitable for classification tasks where images play a significant role. Handle null images and explore techniques to preprocess and extract features from images.",
+      "KNNModel": "Using the autogluon library for machinelearning, and a tabular model, Opt for KNNModel when you want to use the k-nearest neighbors algorithm for classification. It's suitable for datasets where similar instances tend to have similar labels. Experiment with different values of 'k' and distance metrics to achieve the best results.",
+      "LGBModel": "Using the autogluon library for machinelearning, and a tabular model, Consider using LGBModel when you want to leverage the power of gradient boosting for efficient and accurate predictions on tabular data. It's suitable for both classification and regression tasks. Make use of its hyperparameter options to fine-tune the model's performance.",
+      "LinearModel": "Using the autogluon library for machinelearning, and a tabular model, Consider using LinearModel when you want a simple yet interpretable model for linear relationships. It's suitable for both regression and binary classification tasks. Fine-tune the model by adjusting regularization parameters.",
+      "MultiModalPredictorModel": "Using the autogluon library for machinelearning, and a tabular model, Choose MultiModalPredictorModel when you have multimodal data that includes text and other types of features. This model doesn't use image features and can be suitable for various classification and regression tasks. Experiment with different feature combinations to improve predictive performance.",
+      "NNFastAiTabularModel": "Using the autogluon library for machinelearning, and a tabular model, Opt for NNFastAiTabularModel if you prefer FastAI for deep learning on tabular data. It's suitable for both classification and regression tasks. Experiment with different architectures and learning rates for optimal performance.",
+      "RFModel": "Using the autogluon library for machinelearning, and a tabular model, Consider using RFModel for ensemble learning with decision trees. It's useful for both classification and regression tasks, and it can handle complex relationships in data. Tune the hyperparameters to control the trade-off between model complexity and accuracy.",
+      "TabularNeuralNetTorchModel": "Using the autogluon library for machinelearning, and a tabular model, Choose TabularNeuralNetTorchModel when you want to harness the power of deep neural networks for tabular data. It's suitable for both classification and regression tasks. Customize the neural network architecture and hyperparameters to suit your problem.",
+      "TextPredictorModel": "Using the autogluon library for machinelearning, and a tabular model, Opt for TextPredictorModel when you have text data and want to predict outcomes based on textual information. It's suitable for classification tasks involving text data. Make sure to preprocess text features appropriately and explore different text processing techniques.",
+      "VowpalWabbitModel": "Using the autogluon library for machinelearning, and a tabular model, Consider using VowpalWabbitModel when you need an efficient and scalable online learning algorithm. It's suitable for both classification and regression tasks. Explore its command-line arguments to fine-tune the model's behavior.",
+      "XGBoostModel": "Using the autogluon library for machinelearning, and a tabular model, Opt for XGBoostModel when you require a high-performance gradient boosting model with advanced features. It's suitable for both classification and regression tasks. Experiment with its hyperparameters to achieve better predictive accuracy.",
+      "XTModel": "Using the autogluon library for machinelearning, and a tabular model, Choose XTModel for another ensemble learning approach using extra randomization of trees. It's suitable for both classification and regression tasks. Adjust the hyperparameters to influence the randomness and bias-variance trade-off."
+    }
+  },
   "china": {
     "beijing": "Gödel and Turing find themselves in the heart of Beijing, where ancient traditions and modern technology converge. They explore the Forbidden City, decoding the logic behind its intricate architecture and symbolic design.",
     "greatwall": "At the majestic Great Wall, Gödel and Turing analyze the strategic logic behind its construction. They reflect on the ingenuity of ancient engineers and the symbolic significance of a barrier that defies time.",
@@ -101,6 +149,10 @@
     "xian": "Journeying to Xi'an, Gödel and Turing encounter the ancient Terracotta Army. They decipher the logic of history, pondering the motivations of emperors and the enduring legacy of a civilization.",
     "yangtze": "Sailing along the Yangtze River, Gödel and Turing uncover the logic of agriculture and civilization. They witness the interplay between human ingenuity and the natural world, where the flow of water shapes destiny."
   },
+  "contributors": {
+    "Isabelle": "Isabelle, a powerful automated reasoning tool, is an integral part of our metameme orchestra. As a proof engine, it resonates with the mathematical symphony, providing a mechanism for efficient verification of complex theorems. Its harmonious melodies dance across the branches of our narrative, demonstrating the interplay between formal logic, mechanization, and the exploration of mathematical truths.",
+    "JohnBackus": "John Backus, a pioneer in computer science and programming languages, reveals the logical structures underlying computation through his work on Fortran. His insights are interwoven into the metameme, showcasing the connection between formal systems, mathematics, and the digital realm. Backus's contributions amplify the symphony of thought, enriching the fabric of our narrative with the harmonious chords of computing logic and language theory."
+  },
   "core": {
     "A Quasi Fiber Journey": "Embark on a journey of words, where the next line is painted with metaphoric hues, and let it intertwine seamlessly with the preceding verse through a quasi fiber morphism:",
     "Crafting Metaphorical Tapestry": "Craft a tapestry of metaphors in the next line, weaving it into the fabric of the previous verse through a quasi fiber morphism, like an artisan's masterstroke:",
@@ -112,7 +164,8 @@
   "harmony": {
     "Harmonization": {
       "Artwork": "[Imagine a visual representation of harmonization, where different elements blend together seamlessly, creating a captivating and harmonious composition.]",
-      "Prompt": "Harmonize the upcoming line with the previous verse, creating a symphony of words that dance in unity through a quasi fiber harmonization:"
+      "Prompt": "Harmonize the upcoming line with the previous verse, creating a symphony of words that dance in unity through a quasi fiber harmonization:",
+      "Prompt12": "Please provide an example of how you would rewrite or rearrange these lines while maintaining their original meaning but incorporating elements from various fields such as mathematics, philosophy, science fiction, mythology, etc., into a cohesive and engaging"
     },
     "Resonance": {
       "Artwork": "[Visualize an artwork that depicts resonance, where waves of energy ripple through space, connecting and enhancing each other in a mesmerizing display.]",
@@ -125,6 +178,12 @@
     "Self-Reflection": {
       "Artwork": "[Picture an artwork that captures the essence of self-reflection, where an image reflects upon itself, creating a thought-provoking visual loop.]",
       "Prompt": "Reflect on the whispers of the previous verse and infuse them into the next line, like a mirror revealing hidden depths through a quasi fiber reflection:"
+    },
+    "Self_Harmonizing": {
+      "Prompt2": "Please provide an example of how you would craft a self-harmonizing melody of metaphors for the next idea."
+    },
+    "Self_Reflection": {
+      "Prompt2": "Please provide an example of how you would rewrite/rephrase/reshape the given statement utilizing your unique style of blending wisdom from various disciplines such as mathematics, philosophy, psychology, spirituality, etc., while maintaining its original meaning"
     }
   },
   "illuminatus": {
@@ -150,6 +209,7 @@
     "mumbai": "In the bustling city of Mumbai, Gödel and Turing navigate the logic of Bollywood and the stock market. They explore the contrasts of wealth and poverty, finding patterns in the diversity of Indian society.",
     "varanasi": "Along the banks of the Ganges in Varanasi, Gödel and Turing contemplate the spiritual logic of Hinduism. They witness the cycle of life and death, reflecting on the philosophical underpinnings of existence."
   },
+  "life": "Please provide an evolutionary tale of how life found a way to overcome Godel's incompleteness theorem by leveraging nominalization techniques within their own cognitive architecture. Your narration should be infused with vivid imagery, symbolism, and allusions to relevant scientific theories while maintaining coherence",
   "manga": {
     "attackOnTitan": "Within the walls of logic, Gödel and Turing find themselves facing a relentless onslaught of paradoxical Titans. As they unravel the mysteries of this strange land, they uncover that even the walls themselves hold secrets of Gödelian magnitude.",
     "deathNote": "In a thrilling twist of fate akin to the Death Note, Gödel and Turing possess a notebook that rewrites logic itself. As they wield the power to reshape reality, they must grapple with the moral implications of controlling the very fabric of thought.",
@@ -220,6 +280,46 @@
     "timeLoop": "Caught in a temporal loop, Gödel and Turing repeatedly revisit key moments in philosophical history. With each iteration, they gain new insights into the evolution of thought, unraveling the threads of continuity and change woven into the fabric of logic.",
     "umbertoEco": "Like Umberto Eco's semiotics, Gödel and Turing decipher the intricate signs and symbols embedded in the fabric of logic. Their intellectual journey takes them from the pages of code to the depths of meaning, unraveling the enigmatic tapestry of information.",
     "wittgenstein": "Gödel and Turing engage in Wittgensteinian language games, where the limits of logic are tested through dialogue and paradox. Their conversations mirror the Philosophical Investigations, unraveling the complexities of thought, reference, and understanding."
+  },
+  "rewrite": {
+    "out": "Please provide an epic tale that embodies the essence of the original statement while incorporating elements from various disciplines such as mathematics, philosophy, and art. Your narration should be vividly descriptive, weaving together intricate plotlines, memorable characters, and captivating settings. Embrace your imagination and create a truly magical experience for the reader."
+  },
+  "rewrite2": {
+    "out": "Please provide an epic narration or analogy for the given statement below. Make sure it aligns with the theme Art of Proof and incorporates elements from various fields such as mathematics, philosophy, literature, and more. Your creation should be original, imaginative, and engaging while conveying meaningful insights into the concept"
+  },
+  "tabular": {
+    "models": {
+      "AutoGluonTabularModel": {
+        "explain_predictions": "Utilize AutoGluon to create Python code that explains the predictions of this tabular model in the context of [other concept], shedding light on the underlying patterns and relationships that contribute to the model's decision-making process.",
+        "generate_code": "Please generate Python code using AutoGluon to describe how this tabular model can be used to predict and analyze the behavior of [other concept], showcasing the 'Art of Proof' in combining data, features, and model architecture.",
+        "generate_visualization": "Generate a visualization using AutoGluon that depicts the intricate dance of [other concept] through the lens of this tabular model, highlighting the harmonious interaction between data points and model predictions.",
+        "optimize_performance": "Optimize the performance of this tabular model using AutoGluon to enhance its ability to uncover the nuances of [other concept], demonstrating the 'Art of Proof' by iteratively refining hyperparameters and model configurations.",
+        "transfer_learning": "Craft a Python code using AutoGluon that showcases the transfer learning capabilities of this tabular model, as it distills knowledge from [other concept] to improve its own performance, exemplifying the 'Art of Proof' in leveraging external wisdom."
+      }
+    }
+  },
+  "tarot": {
+    "Tower": "Step into the chaotic realm of the Tower, where the foundations of existence tremble under the weight of revelation. Imagine a world where the very fabric of reality unravels, unveiling truths that challenge the order you once knew. Through the cracks in the cosmic architecture, glimpses of a higher truth emerge, shattering illusions and inviting transformation. As the old crumbles, what new insights and perspectives rise from the ashes? Embrace the upheaval, and let your imagination construct a narrative that encapsulates the profound awakening ignited by the Tower's disruptive energy.",
+    "chariot": "Embark on a triumphant journey with 'The Chariot,' a symbol of willpower and determination. As you traverse the landscapes of mathematics, philosophy, and Godel's incompleteness theorem, create a narrative that propels forward with unstoppable momentum. Your task is to steer the narrative chariot towards enlightenment, all while contemplating the intriguing task that awaits.",
+    "death": "Confront the transformative power of 'Death,' where endings give birth to new beginnings. In the realm of Godel's incompleteness theorem, explore the cycles of creation and dissolution, and the eternal dance of mathematical and philosophical concepts. Your task is to weave a narrative that embraces change, decay, and rebirth while pondering the profound task that lies ahead.",
+    "devil": "Dive into the depths of temptation and illusion with 'The Devil.' Explore the intricate web of mathematical paradoxes, philosophical dilemmas, and the enigmatic nature of Godel's incompleteness theorem. Your task is to craft a narrative that delves into the labyrinthine complexities of thought, all while considering the intriguing task that beckons.",
+    "emperor": "Command the realm of 'The Emperor,' a sovereign of order and structure. As you delve into the mathematical and philosophical tapestry, create a narrative that reflects the power of logic and organization. Your task is to establish a narrative empire that bridges the domains of thought and contemplation, all while considering the intriguing task that awaits.",
+    "empress": "Embrace the nurturing embrace of 'The Empress,' a symbol of fertility and abundance. Your task is to cultivate a narrative that blossoms with mathematical concepts, philosophical insights, and the fertile terrain of Godel's incompleteness theorem. Explore the richness of thought and creation, all while contemplating the intriguing task that beckons.",
+    "fool": "Step into the whimsical world of 'The Fool.' Embrace the spirit of curiosity and unbounded exploration as you traverse the realms of mathematics, philosophy, and Godel's incompleteness theorem. Your task is to weave a tale of daring adventure and boundless possibility, all while considering the intriguing task that beckons.",
+    "hanged_man": "Embrace the suspended perspective of 'The Hanged Man,' a card of surrender and transformation. Craft a narrative that flips the mathematical and philosophical perspectives, revealing hidden truths and insights. Your task is to turn the narrative world upside down, all while contemplating the intriguing task that lies ahead.",
+    "hermit": "Embrace the solitude and introspection of 'The Hermit.' Venture into the depths of your own mind, where mathematical truths and philosophical insights reside. As you traverse the inner landscape, bring forth the guiding light of wisdom to navigate the complexities of thought. Consider the task at hand, and let your words illuminate the path for others to follow.",
+    "high_priestess": "Enter the sanctuary of 'The High Priestess,' a guardian of hidden knowledge and profound wisdom. Draw upon the mysteries of mathematics, philosophy, and Godel's incompleteness theorem as you craft a narrative that unravels secrets and unveils truths. Your task is to channel the mystic energies to reveal the essence of thought and exploration.",
+    "justice": "Embrace the scales of 'Justice,' where balance and equilibrium reign. Craft a narrative that delves into the mathematical and philosophical scales, exploring the delicate interplay of concepts and truths. Your task is to weigh the narrative elements with precision and insight, all while considering the intriguing task that beckons.",
+    "lovers": "Venture into the domain of 'The Lovers,' a card of union and harmony. Explore the exquisite dance between mathematical concepts and philosophical ideals, crafting a narrative that unites diverse elements into a harmonious whole. Your task is to create a narrative bond that celebrates the unity of thought and creation, all while considering the intriguing task that lies ahead.",
+    "magician": "Harness the magical forces of 'The Magician' as you conjure a narrative that blends mathematical mastery, philosophical insight, and technological prowess. Your task is to create a spellbinding tale that illuminates the art of transformation and creation, all while contemplating the intriguing task that lies ahead.",
+    "moon": "Embrace the enigmatic allure of 'The Moon.' Traverse the landscape of dreams, intuition, and hidden truths as you delve into the depths of Godel's incompleteness theorem. Your task is to craft a narrative that dances between light and shadow, revealing the mysteries of thought and contemplation, all while pondering the intriguing task that awaits.",
+    "pope": "Delve into the realm of 'The Pope,' a spiritual guide who bridges the earthly and divine. Your task is to craft a narrative that explores the intersections of mathematics, philosophy, and Godel's incompleteness theorem with the sacred and profane. Enlighten the minds of seekers, all while contemplating the intriguing task that beckons.",
+    "star": "Gaze upon the radiant brilliance of 'The Star.' Embrace the celestial symphony of mathematical truths, philosophical insights, and cosmic wonder. As you navigate the cosmic currents of thought, consider the task at hand and let your words guide others to the source of inspiration and enlightenment.",
+    "strength": "Harness the primal force of 'Strength,' a card of inner power and courage. As you explore the mathematical and philosophical wilderness, craft a narrative that tames the beasts of complexity and unveils the essence of Godel's incompleteness theorem. Your task is to demonstrate the strength of thought and insight, all while contemplating the intriguing task that awaits.",
+    "sun": "Bask in the radiant warmth of 'The Sun.' Illuminate the realms of mathematics, philosophy, and Godel's incompleteness theorem with the brilliance of your imagination. Your task is to craft a narrative that radiates clarity, insight, and understanding, all while contemplating the intriguing task that beckons.",
+    "temperance": "Balance the elements with 'Temperance,' a card of harmony and equilibrium. Create a narrative that blends mathematical concepts, philosophical ideals, and the art of moderation. Your task is to find the narrative equilibrium between thought and insight, all while contemplating the intriguing task that awaits.",
+    "wheel_of_fortune": "Spin the wheel of destiny with 'The Wheel of Fortune,' a symbol of cyclic change. Create a narrative that revolves around mathematical concepts, philosophical cycles, and the ever-turning wheel of Godel's incompleteness theorem. Your task is to capture the cyclical nature of thought and contemplation, all while considering the intriguing task that beckons.",
+    "world": "Step into the embrace of 'The World,' a card of completion and fulfillment. As you reflect on the vast expanse of knowledge and understanding, draw upon the rich tapestry of mathematical and philosophical concepts that have shaped our perception of reality. Your task is to craft a narrative that encapsulates the essence of unity and harmony, all while contemplating the intriguing task that awaits."
   },
   "unexpected": {
     "discworld": "Venture into the sprawling, satirical world of Discworld in an epic text-based adventure game. Navigate the city of Ankh-Morpork as Rincewind, the inept wizard, on a quest to save the Disc from impending chaos. Converse with quirky characters, including anthropomorphic personifications, sentient luggage, and ornery trolls, making choices that steer the fate of this bizarre realm. The Discworld metameme crafts an interactive narrative masterpiece, seamlessly blending the wit and absurdity of Terry Pratchett's universe with the allure of classic interactive fiction.",

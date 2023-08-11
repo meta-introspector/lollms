@@ -25,7 +25,7 @@ with open("flattened.json","w") as fo:
   json.dump(flatten,fo,indent=2,)
 
 
-def split_fibers(fibers, max_words=32):
+def split_fibers(fibers, max_words=64):
     # Split each fiber into chunks of up to max_words words
     sfibers = []
     for fiber in fibers:
@@ -77,7 +77,7 @@ class MyConversation(Conversation):
     with open(file_path, 'r') as file:
       lines = file.readlines()
 
-      lines = refactor_into_fiber_bundles(lines, 2)
+      lines = refactor_into_fiber_bundles(lines, 4)
 
       with open("debug.txt","w") as fo:
           for line in lines:
@@ -96,17 +96,18 @@ class MyConversation(Conversation):
 
       line = feed_text = self.text_ring_buffer.popleft()
       
-      #print("You:", feed_text)            
-      #print(self.personality.name + ": ", end="", flush=True)
-
       count = count + 1
-      print("IL" + str(count) + " :" + line, flush=True)
+      print(f"json.__input_line__{count:05} = {json.dumps(line.strip())};")
       for name,key in flatten.items():
-        print("DEBUG",name, key)
-        output = self.safe_generate(key + line,
+          #print("DEBUG",name, key)
+          person = " For the next task assume the following role: " + name
+          rewrite = " Rewrite and rephrase and reshape this story using your epic metaphors. :\n\nOriginal Statement: "
+          data = person + key + rewrite +  line + " remember to stay in your role :" +name + ". your creative response is now requested!:"
+          #print("DEBUG:", len(data), data)
+          output = self.safe_generate(data,
                                     callback=self.callback)
-        print("OL" + str(count) + " " + name + " :: " + output.strip())
-      #print()
+          print(f"json.{name}{count:05} = {json.dumps(output.strip())};")
+
 
   def callback(self, text, type=None, metadata: dict = {}):
     #print(text, end="")
