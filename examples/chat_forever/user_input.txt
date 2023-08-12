@@ -1,333 +1,441 @@
--- haskell code for core proof types of coq extracted recursivly via reflection via metacoq
-module Server.MetaCoq.TestMeta6 where
--- the first types of base level 0 have no parameters, they are foundational
-data Positive =  XI Positive  | XO Positive  | XH 
-data Byte = X00 | X01| YYSpliceByteListIntoHereYY | XHH
---level one have one one dependancy each 
-data N =   N0  | Npos Positive  
-data Z =   Z0 | Zpos Positive | Zneg Positive
-data MyString =   EmptyString | String Byte MyString
-data Nat =  O  | S Nat  
--- level 2 dependencies
-data TNumRel =   Le Z | Eq0
-data UniversalLevel =    Lzero | Level MyString | Lvar Nat
-data Prod a b =    Pair a b
--- 3 dependencies
-type SortedLevels = Prod UniversalLevel TNumRel
--- 4 dependencies
-type TProd_SortedLevels_UniversalLevel = Prod SortedLevels UniversalLevel
-type Ident = MyString
-type Dirpath = List Ident
-type Kername = Prod Modpath Ident
-data Modpath =   MPfile Dirpath | MPbound Dirpath Ident Nat | MPdot Modpath Ident
-data Tree0 =   Leaf0 | Node0 T0 Tree0 (TProd_SortedLevels_UniversalLevel) Tree0
-data TTree =   Leaf | Node T0 Tree UniversalLevel Tree  
-type OKername = Option Kername
-data TMk_retroknowledge_Kername_Kername_37 = Mk_retroknowledge OKername OKername
-data Def term =    Mkdef Binder_annot_Name term term Nat
-data Relevance =   Relevant | Irrelevant  
-data BinderAnnot a =   MkBindAnn a Relevance 
-type ListBinder_annot_Name = List Binder_annot_Name
-data Name = NAnon | NNamed Ident
-type Binder_annot_Name = Binder_annot Name -- Binder_annot_Name 
-type BinderAnnotName = BinderAnnot Name  -- same
-type Binder_annot  = BinderAnnot
-data Projection_body =   Build_projection_body Ident Relevance Term
-data Constructor_body =   Build_constructor_body Ident Context (List Term) Term Nat 
-type TNonEmptyLevelExprSet22 = NonEmptyLevelExprSet
-type NonEmptyLevelExprSet =   TListElt1_syn2_21-- singleton inductive, whose constructor was Build_nonEmptyLevelExprSet
-data TLevelProps_2 =   LProp0 | LSProp0 | LType TNonEmptyLevelExprSet22
-data One_inductive_body =   Build_one_inductive_body Ident Context TLevelProps Term Allowed_eliminations  (List Constructor_body) (List Projection_body) Relevance
--- 1. `One_inductive_body`:
---    - This data type represents a single inductive type definition in Coq.
---    - It includes information about the identifier, context, type level properties, term, allowed eliminations, constructors, projections, and relevance of the inductive type.
---    - Inductive types are a fundamental concept in Coq, allowing the definition of data structures that support rigorous reasoning and proofs.
--- 4. `ListOne_inductive_body`:
---    - This data type represents a list of `One_inductive_body` instances.
---    - Lists are a common data structure in functional programming, and in the context of Coq, they are likely used to group and manage multiple inductive type definitions.
-data MutualInductiveBody =   Build_mutual_inductive_body Recursivity_kind Nat Context (List One_inductive_body)   Universes_decl (Option (List TVariance_36))
--- 2. `Mutual_inductive_body`:
---    - This data type represents a mutually recursive set of inductive types in Coq.
---    - It contains information about the recursivity kind, context, list of `One_inductive_body` instances, universe declarations, and optional type variance information.
---    - Mutually recursive definitions allow multiple data types to refer to each other, enabling the specification and verification of complex systems.
-type Mutual_inductive_body = MutualInductiveBody
-data RecursivityKind =   Finite | CoFinite | BiFinite
--- 2. `Context`:
---    - Represents a list of `Context_decl Term` instances.
---    - A context in Coq consists of a list of declarations, which can include variable names, their optional types, and their bound term.
--- 3. `Context_decl term`:
---    - Represents a declaration in a Coq context.
---    - It includes information about a binder (variable name) with annotations, an optional type, and the bound term.
-type ListContext_declTerm = List Context_declTerm
-type Context = List (Context_decl Term)
-type Context_declTerm = Context_decl Term
-data Context_decl term =   Mkdecl Binder_annot_Name (Option term) term
-data Constant_body =   Build_constant_body Term (Option Term) Universes_decl Relevance
-data Global_env =  Mk_global_env TTreeTree0Pair Global_declarations TMk_retroknowledge_Kername_Kername_37
---  Mk_global_env T35 Global_declarations T37
---type TTreeTree0Pair = Prod TTree TTree
-type TTreeTree0Pair = Prod TTree Tree0
-type T4 = Tree
-type T_0 = T4
-type T10 = T_0
---type T35=TTreeTree0Pair
-type T32 = T_4
-type T_4 = T26
-type T26 = Tree0
---type T35 = Prod T10 T32
-type Global_declarations = List (TGlobalDeclaration)
-type TGlobalDeclaration = Prod Kername Global_decl
-data Global_decl =    ConstantDecl Constant_body  | InductiveDecl Mutual_inductive_body
-data Bool =   True | False  
-data Comparison =   Eq | Lt | Gt  
-
-
-type T25 = TNumRel_25
-
-
-data List a =   Nil | Cons a (List a)            
-
-
-
-
-
-
-
-data Option a =   Some a | None  
-
-
-
-
-
-
-
-data Sum a b =    Inl a | Inr b ( Generic, Show, Lift,             Data, Typeable)
-data T13 =   LSProp | LProp  
-
-
-
-data TVariance_36 =   Irrelevant0 | Covariant | Invariant  
-
-
-
-
-type Elt0 = UniversalLevel
-type T_ = UniversalLevel
-type Elt1 = TUniversalLevelExpressions_14
-type Elt2 = TUniversalLevelExpressions_14
-
-
-
-data UniversesDecl =   Monomorphic_ctx  
-data UniversesDecl =   Monomorphic_ctx--  | Polymorphic_ctx T34  not used 
-
-
-
-
-
-
-
-
-
--- Certainly, let's document these Haskell data types and discuss their potential significance within the context of Coq and formal methods:
-
--- 1. `Constructor_body`:
---    - Represents the body of a constructor in Coq.
---    - It includes information about the constructor's identifier, context, list of arguments, return type, and arity.
-
--- Historical Significance and Connection to Coq:
--- - The `Constructor_body` data type reflects the structure of constructors in Coq, which are used to define the different cases of an inductive data type.
--- - Contexts and context declarations are a core concept in Coq and other proof assistants, providing a way to manage variable bindings and their types within a formal system.
--- - Coq's development was influenced by foundational work in higher-order logic and constructive type theory, starting in the 1980s.
--- - The ability to define constructors, contexts, and context declarations contributes to Coq's capabilities for specifying and verifying complex software systems and mathematical proofs.
-
--- These data types provide a glimpse into the representation and manipulation of constructs used within Coq's formalism. If you have specific questions about these data types, how they are used, or any other related topics, feel free to ask!
-
-
-
-
-
-
-
-
-type ListConstructor_body = List Constructor_body
-
-type ListElt1 = List Elt1
-
-type ListProjection_body = List Projection_body
-type ListTVariance_36 = List TVariance_36
-
-type ListUniversalLevel = List UniversalLevel 
-
-
-
-
-type OptionListTVariance_36 = Option ListTVariance_36
-
-
-type Recursivity_kind = RecursivityKind
-type T33 = UniversalLevels -- 33 is the magic number by the way
-
-type TLevelProps = TLevelProps_2
-type TListElt1_18 = List Elt1
-type TListElt1_syn2_21 = TListElt1_syn_1
-type TListElt1_syn_1 = TListElt1_18
-
-
-
--- type T25 = Prod T25S T3
--- type T3 = T_
-
-
-
-type TString =MyString
-
---type TTree = TTree_syn_0
---type TTree = TTree_syn_4
-type TUniversalLevelExpressions_14 = Prod UniversalLevel Nat
-type TUniversalLevels = List UniversalLevel 
-type UniversalLevel = UniversalLevel
-type Universes_decl = UniversesDecl
-
-
-type BigMama = (Prod Global_env Term)
-
-
-
-type OptionTerm = Option Term
-type Mfixpoint term = List (Def term)
-type ListTerm = List Term
-type ListDefTerm = List DefTerm
-
-type DefTerm = Def Term
-
-
--- data Term = ...
---  | TCase Case_info (Predicate Term) Term (List (Branch Term))
-data CaseInfo =  Mk_case_info Inductive Nat Relevance  
-type Case_info = CaseInfo
-type PredicateTerm = Predicate Term
-data Predicate term =   Mk_predicate TUniversalLevels (List term) (List Binder_annot_Name) term  
-type BranchTerm = Branch Term
-type ListBranchTerm = List BranchTerm
-data Branch term =Mk_branch (List Binder_annot_Name) term
-
--- data Term ==...   | TProd Binder_annot_Name Term Term
---   | TLambda Binder_annot_Name Term Term
---   | TLetIn Binder_annot_Name Term Term Term
--- Certainly, let's document these Haskell data types and their relationships within the context of Coq and formal methods:
-
--- 1. `Term`:
---    - Represents different kinds of terms in Coq.
---    - Includes constructors for various term forms such as products (TProd), lambda abstractions (TLambda), and let-in expressions (TLetIn).
---    - These constructors are fundamental building blocks for representing and manipulating expressions in Coq.
-
--- 2. `Def term`:
---    - Represents a definition in Coq.
---    - It includes a binder (variable name) with an annotation, a term (the definition), a type, and an integer (possibly representing the number of recursive arguments).
-
--- 3. `BinderAnnot a`:
---    - Represents a binder (variable) with an associated annotation.
---    - The annotation includes the variable's name and its relevance (e.g., whether it's used in a term's type or body).
-
--- 4. `ListBinder_annot_Name`:
---    - Represents a list of binders with annotations and names.
-
--- 5. `Binder_annot_Name` / `BinderAnnotName`:
---    - A type alias for binders with annotations and names.
-
--- 6. `Binder_annot`:
---    - Represents a binder with an annotation.
-
--- Historical Significance and Connection to Coq:
--- - The `Term` data type embodies Coq's expressive power by capturing various forms of terms and expressions, facilitating rigorous reasoning and formal proofs.
--- - Constructors like `TProd`, `TLambda`, and `TLetIn` correspond to standard constructs used in lambda calculus and type theory, which are foundational to Coq's design.
--- - Definitions (`Def`) play a critical role in formal verification, as they represent the core concepts being reasoned about in a proof.
--- - The notion of annotations and relevance in binders (`BinderAnnot`) is central to Coq's type system, allowing fine-grained control over variable usage and scope.
--- - The usage of `ListBinder_annot_Name`, `Binder_annot_Name`, and `BinderAnnotName` underscores the importance of structured variable binding and annotation in Coq.
-
--- These data types capture fundamental elements of Coq's syntax and type theory. If you have more questions or if there's a specific aspect you'd like to explore, please feel free to ask!
-
-
---Term has two constructors
---  | TInd Inductive TUniversalLevels
---  | TConstruct Inductive Nat TUniversalLevels
-
-data Inductive = MkInd Kername Nat
-
-
-
--- 3. `Projection`:
---    - This data type represents a projection operation for extracting components of an inductive data type.
---    - It includes information about the inductive type, constructor index, and projection index.
---    - Projections are an important aspect of inductive types, allowing access to specific fields or components of complex data structures.
-
-
--- Historical Significance:
--- - Coq is a widely used interactive theorem prover and programming language focused on formal verification.
--- - The concept of inductive types and mutual recursion has its roots in mathematical logic and type theory, with influences from Alonzo Church, Kurt Gödel, and others.
--- - Coq's development began in the 1980s, influenced by earlier work on the LCF and ML proof assistants.
--- - The ability to define and reason about inductive types was a major breakthrough, enabling the formal specification and verification of software and mathematical proofs.
--- - Projections play a crucial role in defining and manipulating inductive types, contributing to Coq's expressive power.
-
-
-data Allowed_eliminations =   IntoSProp | IntoPropSProp | IntoSetPropSProp | IntoAny 
-
-data Projection =   MkProjection Inductive Nat Nat
-type ListOne_inductive_body  = List One_inductive_body
-
-type Cast_kind = CastKind
-data CastKind =   VmCast | NativeCast | Cast 
-
-data Term = StartOfTermList
-  | TInt Prelude.Int
-  | TFloat Prelude.Float
-  TRel Nat
-  | TConst Kername TUniversalLevels
-  | TSort TLevelProps
-  | TInd Inductive TUniversalLevels  
-  | TVar Ident
-  | TConstruct Inductive Nat TUniversalLevels
--- reflective 1
-  | TEvar Nat (List Term)
-  | TProj Projection Term
-  | TFix (Mfixpoint Term) Nat
-  | TCoFix (Mfixpoint Term) Nat
--- 2
-  | TProd Binder_annot_Name Term Term
-  | TCast Term Cast_kind Term
-  | TLambda Binder_annot_Name Term Term
-  | TApp Term (List Term)
--- 3
-  | TLetIn Binder_annot_Name Term Term Term
-  | TCase Case_info (Predicate Term) Term (List (Branch Term))
-  | TCase Case_info (Predicate Term) Term (List (Branch Term))
-
--- 1. `CaseInfo`:
---    - Represents information about a case analysis during proof construction in Coq.
---    - It includes details about the inductive type, constructor index, and relevance of the case analysis.
---    - Case analysis is a fundamental proof technique in Coq and other theorem provers, enabling the examination of different cases for inductive data types.
-
--- 2. `Predicate term`:
---    - Defines a predicate that can be used for specifying properties and constraints on terms in Coq.
---    - It consists of information about universal levels, a list of terms, a list of names, and the main predicate term.
---    - Predicates are essential for expressing logical properties and assertions about values in a formal system like Coq.
-
--- 3. `Branch term`:
---    - Represents a branch in a case analysis, linking a list of names to a specific term.
---    - It is used to define the different branches or cases that arise from a case analysis.
---    - Case analysis and pattern matching are integral to reasoning and proving properties about inductive data types.
-
--- Historical Significance:
--- - Case analysis and pattern matching are fundamental techniques in formal methods and theorem proving.
--- - The concept of case analysis has its roots in mathematical logic and is essential for reasoning about complex data structures and properties.
--- - Coq's development was influenced by the LCF and ML proof assistants, and it started in the 1980s.
--- - The ability to perform case analyses and define predicates allowed Coq to become a powerful tool for both software verification and formalizing mathematical proofs.
--- - These data types reflect Coq's emphasis on expressing and verifying properties of inductive data types, which has been a cornerstone of formal methods research.
-
-
-type TNumRel_3 = TNumRel
-type TNumRel_syn_24 = TNumRel_3
-
-
-type TProd_UniversalLevel_TNumRel_25S = SortedLevels
+{- Language/Haskell/TH/Desugar.hs
+
+(c) Richard Eisenberg 2013
+rae@cs.brynmawr.edu
+-}
+
+{-# LANGUAGE CPP, MultiParamTypeClasses, FunctionalDependencies,
+             TypeSynonymInstances, FlexibleInstances, LambdaCase,
+             ScopedTypeVariables #-}
+
+-----------------------------------------------------------------------------
+-- |
+-- Module      :  Language.Haskell.TH.Desugar
+-- Copyright   :  (C) 2014 Richard Eisenberg
+-- License     :  BSD-style (see LICENSE)
+-- Maintainer  :  Ryan Scott
+-- Stability   :  experimental
+-- Portability :  non-portable
+--
+-- Desugars full Template Haskell syntax into a smaller core syntax for further
+-- processing.
+--
+----------------------------------------------------------------------------
+
+module Language.Haskell.TH.Desugar (
+  -- * Desugared data types
+  DExp(..), DLetDec(..), DPat(..),
+  DType(..), DForallTelescope(..), DKind, DCxt, DPred,
+  DTyVarBndr(..), DTyVarBndrSpec, DTyVarBndrUnit, Specificity(..),
+  DMatch(..), DClause(..), DDec(..),
+  DDerivClause(..), DDerivStrategy(..), DPatSynDir(..), DPatSynType,
+  Overlap(..), PatSynArgs(..), DataFlavor(..),
+  DTypeFamilyHead(..), DFamilyResultSig(..), InjectivityAnn(..),
+  DCon(..), DConFields(..), DDeclaredInfix, DBangType, DVarBangType,
+  Bang(..), SourceUnpackedness(..), SourceStrictness(..),
+  DForeign(..),
+  DPragma(..), DRuleBndr(..), DTySynEqn(..), DInfo(..), DInstanceDec,
+  Role(..), AnnTarget(..),
+
+  -- * The 'Desugar' class
+  Desugar(..),
+
+  -- * Main desugaring functions
+  dsExp, dsDecs, dsType, dsInfo,
+  dsPatOverExp, dsPatsOverExp, dsPatX,
+  dsLetDecs, dsTvb, dsTvbSpec, dsTvbUnit, dsCxt,
+  dsCon, dsForeign, dsPragma, dsRuleBndr,
+
+  -- ** Secondary desugaring functions
+  PatM, dsPred, dsPat, dsDec, dsDataDec, dsDataInstDec,
+  DerivingClause, dsDerivClause, dsLetDec,
+  dsMatches, dsBody, dsGuards, dsDoStmts, dsComp, dsClauses,
+  dsBangType, dsVarBangType,
+  dsTypeFamilyHead, dsFamilyResultSig,
+#if __GLASGOW_HASKELL__ >= 801
+  dsPatSynDir,
+#endif
+  dsTypeArg,
+
+  -- * Converting desugared AST back to TH AST
+  module Language.Haskell.TH.Desugar.Sweeten,
+
+  -- * Expanding type synonyms
+  expand, expandType,
+
+  -- * Reification
+  reifyWithWarning,
+
+  -- ** Local reification
+  -- $localReification
+  withLocalDeclarations, dsReify, dsReifyType,
+  reifyWithLocals_maybe, reifyWithLocals, reifyFixityWithLocals,
+  reifyTypeWithLocals_maybe, reifyTypeWithLocals,
+  lookupValueNameWithLocals, lookupTypeNameWithLocals,
+  mkDataNameWithLocals, mkTypeNameWithLocals,
+  reifyNameSpace,
+  DsMonad(..), DsM,
+
+  -- * Nested pattern flattening
+  scExp, scLetDec,
+
+  -- * Capture-avoiding substitution and utilities
+  module Language.Haskell.TH.Desugar.Subst,
+
+  -- * Free variable calculation
+  module Language.Haskell.TH.Desugar.FV,
+
+  -- * Utility functions
+  applyDExp,
+  dPatToDExp, removeWilds,
+  getDataD, dataConNameToDataName, dataConNameToCon,
+  nameOccursIn, allNamesIn, flattenDValD, getRecordSelectors,
+  mkTypeName, mkDataName, newUniqueName,
+  mkTupleDExp, mkTupleDPat, maybeDLetE, maybeDCaseE, mkDLamEFromDPats,
+  tupleNameDegree_maybe,
+  unboxedSumNameDegree_maybe, unboxedTupleNameDegree_maybe,
+  isTypeKindName, typeKindName, bindIP,
+  mkExtraDKindBinders, dTyVarBndrToDType, changeDTVFlags,
+  toposortTyVarsOf, toposortKindVarsOfTvbs,
+
+  -- ** 'FunArgs' and 'VisFunArg'
+  FunArgs(..), ForallTelescope(..), VisFunArg(..),
+  filterVisFunArgs, ravelType, unravelType,
+
+  -- ** 'DFunArgs' and 'DVisFunArg'
+  DFunArgs(..), DVisFunArg(..),
+  filterDVisFunArgs, ravelDType, unravelDType,
+
+  -- ** 'TypeArg'
+  TypeArg(..), applyType, filterTANormals, unfoldType,
+
+  -- ** 'DTypeArg'
+  DTypeArg(..), applyDType, filterDTANormals, unfoldDType,
+
+  -- ** Extracting bound names
+  extractBoundNamesStmt, extractBoundNamesDec, extractBoundNamesPat
+  ) where
+
+import Language.Haskell.TH.Datatype.TyVarBndr
+import Language.Haskell.TH.Desugar.AST
+import Language.Haskell.TH.Desugar.Core
+import Language.Haskell.TH.Desugar.Expand
+import Language.Haskell.TH.Desugar.FV
+import Language.Haskell.TH.Desugar.Match
+import Language.Haskell.TH.Desugar.Reify
+import Language.Haskell.TH.Desugar.Subst
+import Language.Haskell.TH.Desugar.Sweeten
+import Language.Haskell.TH.Desugar.Util
+import Language.Haskell.TH.Syntax
+
+import Control.Monad
+import qualified Data.Foldable as F
+import Data.Function
+import qualified Data.Map as M
+import qualified Data.Set as S
+import Prelude hiding ( exp )
+
+-- | This class relates a TH type with its th-desugar type and allows
+-- conversions back and forth. The functional dependency goes only one
+-- way because we define the following instances on old versions of GHC:
+--
+-- @
+-- instance 'Desugar' 'TyVarBndrSpec' 'DTyVarBndrSpec'
+-- instance 'Desugar' 'TyVarBndrUnit' 'DTyVarBndrUnit'
+-- @
+--
+-- Prior to GHC 9.0, 'TyVarBndrSpec' and 'TyVarBndrUnit' are simply type
+-- synonyms for 'TyVarBndr', so making the functional dependencies
+-- bidirectional would cause these instances to be rejected.
+class Desugar th ds | ds -> th where
+  desugar :: DsMonad q => th -> q ds
+  sweeten :: ds -> th
+
+instance Desugar Exp DExp where
+  desugar = dsExp
+  sweeten = expToTH
+
+instance Desugar Type DType where
+  desugar = dsType
+  sweeten = typeToTH
+
+instance Desugar Cxt DCxt where
+  desugar = dsCxt
+  sweeten = cxtToTH
+
+#if __GLASGOW_HASKELL__ >= 900
+-- | This instance is only @flag@-polymorphic on GHC 9.0 or later, since
+-- previous versions of GHC do not equip 'TyVarBndr' with a @flag@ type
+-- parameter. As a result, we define two separate instances for 'DTyVarBndr'
+-- on older GHCs:
+--
+-- @
+-- instance 'Desugar' 'TyVarBndrSpec' 'DTyVarBndrSpec'
+-- instance 'Desugar' 'TyVarBndrUnit' 'DTyVarBndrUnit'
+-- @
+instance Desugar (TyVarBndr flag) (DTyVarBndr flag) where
+  desugar = dsTvb
+  sweeten = tvbToTH
+#else
+-- | This instance monomorphizes the @flag@ parameter of 'DTyVarBndr' since
+-- pre-9.0 versions of GHC do not equip 'TyVarBndr' with a @flag@ type
+-- parameter. There is also a corresponding instance for
+-- 'TyVarBndrUnit'/'DTyVarBndrUnit'.
+instance Desugar TyVarBndrSpec DTyVarBndrSpec where
+  desugar = dsTvbSpec
+  sweeten = tvbToTH
+
+-- | This instance monomorphizes the @flag@ parameter of 'DTyVarBndr' since
+-- pre-9.0 versions of GHC do not equip 'TyVarBndr' with a @flag@ type
+-- parameter. There is also a corresponding instance for
+-- 'TyVarBndrSpec'/'DTyVarBndrSpec'.
+instance Desugar TyVarBndrUnit DTyVarBndrUnit where
+  desugar = dsTvbUnit
+  sweeten = tvbToTH
+#endif
+
+instance Desugar [Dec] [DDec] where
+  desugar = dsDecs
+  sweeten = decsToTH
+
+instance Desugar TypeArg DTypeArg where
+  desugar = dsTypeArg
+  sweeten = typeArgToTH
+
+-- | If the declaration passed in is a 'DValD', creates new, equivalent
+-- declarations such that the 'DPat' in all 'DValD's is just a plain
+-- 'DVarPa'. Other declarations are passed through unchanged.
+-- Note that the declarations that come out of this function are rather
+-- less efficient than those that come in: they have many more pattern
+-- matches.
+flattenDValD :: Quasi q => DLetDec -> q [DLetDec]
+flattenDValD dec@(DValD (DVarP _) _) = return [dec]
+flattenDValD (DValD pat exp) = do
+  x <- newUniqueName "x" -- must use newUniqueName here because we might be top-level
+  let top_val_d = DValD (DVarP x) exp
+      bound_names = F.toList $ extractBoundNamesDPat pat
+  other_val_ds <- mapM (mk_val_d x) bound_names
+  return $ top_val_d : other_val_ds
+  where
+    mk_val_d x name = do
+      y <- newUniqueName "y"
+      let pat'  = wildify name y pat
+          match = DMatch pat' (DVarE y)
+          cas   = DCaseE (DVarE x) [match]
+      return $ DValD (DVarP name) cas
+
+    wildify name y p =
+      case p of
+        DLitP lit -> DLitP lit
+        DVarP n
+          | n == name -> DVarP y
+          | otherwise -> DWildP
+        DConP con ts ps -> DConP con ts (map (wildify name y) ps)
+        DTildeP pa -> DTildeP (wildify name y pa)
+        DBangP pa -> DBangP (wildify name y pa)
+        DSigP pa ty -> DSigP (wildify name y pa) ty
+        DWildP -> DWildP
+
+flattenDValD other_dec = return [other_dec]
+
+-- | Produces 'DLetDec's representing the record selector functions from
+-- the provided 'DCon's.
+--
+-- Note that if the same record selector appears in multiple constructors,
+-- 'getRecordSelectors' will return only one binding for that selector.
+-- For example, if you had:
+--
+-- @
+-- data X = X1 {y :: Symbol} | X2 {y :: Symbol}
+-- @
+--
+-- Then calling 'getRecordSelectors' on @[X1, X2]@ will return:
+--
+-- @
+-- [ DSigD y (DAppT (DAppT DArrowT (DConT X)) (DConT Symbol))
+-- , DFunD y [ DClause [DConP X1 [DVarP field]] (DVarE field)
+--           , DClause [DConP X2 [DVarP field]] (DVarE field) ] ]
+-- @
+--
+-- instead of returning one binding for @X1@ and another binding for @X2@.
+--
+-- 'getRecordSelectors' does not attempt to filter out \"naughty\" record
+-- selectors—that is, records whose field types mention existentially
+-- quantified type variables that do not appear in the constructor's return
+-- type. Here is an example of a naughty record selector:
+--
+-- @
+-- data Some :: (Type -> Type) -> Type where
+--   MkSome :: { getSome :: f a } -> Some f
+-- @
+--
+-- GHC itself will not allow the use of @getSome@ as a top-level function due
+-- to its type @f a@ mentioning the existential variable @a@, but
+-- 'getRecordSelectors' will return it nonetheless. Ultimately, this design
+-- choice is a practical one, as detecting which type variables are existential
+-- in Template Haskell is difficult in the general case.
+getRecordSelectors :: DsMonad q => [DCon] -> q [DLetDec]
+getRecordSelectors cons = merge_let_decs `fmap` concatMapM get_record_sels cons
+  where
+    get_record_sels (DCon con_tvbs _ con_name con_fields con_ret_ty) =
+      case con_fields of
+        DRecC fields -> go fields
+        DNormalC{}   -> return []
+        where
+          go fields = do
+            varName <- qNewName "field"
+            return $ concat
+              [ [ DSigD name $ DForallT (DForallInvis con_tvbs)
+                             $ DArrowT `DAppT` con_ret_ty `DAppT` field_ty
+                , DFunD name [DClause [DConP con_name []
+                                         (mk_field_pats n (length fields) varName)]
+                                      (DVarE varName)] ]
+              | ((name, _strict, field_ty), n) <- zip fields [0..]
+              ]
+
+    mk_field_pats :: Int -> Int -> Name -> [DPat]
+    mk_field_pats 0 total name = DVarP name : (replicate (total-1) DWildP)
+    mk_field_pats n total name = DWildP : mk_field_pats (n-1) (total-1) name
+
+    merge_let_decs :: [DLetDec] -> [DLetDec]
+    merge_let_decs decs =
+      let (name_clause_map, decs') = gather_decs M.empty S.empty decs
+       in augment_clauses name_clause_map decs'
+        -- First, for each record selector-related declarations, do the following:
+        --
+        -- 1. If it's a DFunD...
+        --   a. If we haven't encountered it before, add a mapping from its Name
+        --      to its associated DClauses, and continue.
+        --   b. If we have encountered it before, augment the existing Name's
+        --      mapping with the new clauses. Then remove the DFunD from the list
+        --      and continue.
+        -- 2. If it's a DSigD...
+        --   a. If we haven't encountered it before, remember its Name and continue.
+        --   b. If we have encountered it before, remove the DSigD from the list
+        --      and continue.
+        -- 3. Otherwise, continue.
+        --
+        -- After this, scan over the resulting list once more with the mapping
+        -- that we accumulated. For every DFunD, replace its DClauses with the
+        -- ones corresponding to its Name in the mapping.
+        --
+        -- Note that this algorithm combines all of the DClauses for each unique
+        -- Name, while preserving the order in which the DFunDs were originally
+        -- found. Moreover, it removes duplicate DSigD entries. Using Maps and
+        -- Sets avoid quadratic blowup for data types with many record selectors.
+      where
+        gather_decs :: M.Map Name [DClause] -> S.Set Name -> [DLetDec]
+                    -> (M.Map Name [DClause], [DLetDec])
+        gather_decs name_clause_map _ [] = (name_clause_map, [])
+        gather_decs name_clause_map type_sig_names (x:xs)
+          -- 1.
+          | DFunD n clauses <- x
+          = let name_clause_map' = M.insertWith (\new old -> old ++ new)
+                                                n clauses name_clause_map
+             in if n `M.member` name_clause_map
+                then gather_decs name_clause_map' type_sig_names xs
+                else let (map', decs') = gather_decs name_clause_map'
+                                           type_sig_names xs
+                      in (map', x:decs')
+
+          -- 2.
+          | DSigD n _ <- x
+          = if n `S.member` type_sig_names
+            then gather_decs name_clause_map type_sig_names xs
+            else let (map', decs') = gather_decs name_clause_map
+                                       (n `S.insert` type_sig_names) xs
+                  in (map', x:decs')
+
+          -- 3.
+          | otherwise =
+              let (map', decs') = gather_decs name_clause_map type_sig_names xs
+               in (map', x:decs')
+
+        augment_clauses :: M.Map Name [DClause] -> [DLetDec] -> [DLetDec]
+        augment_clauses _ [] = []
+        augment_clauses name_clause_map (x:xs)
+          | DFunD n _ <- x, Just merged_clauses <- n `M.lookup` name_clause_map
+          = DFunD n merged_clauses:augment_clauses name_clause_map xs
+          | otherwise = x:augment_clauses name_clause_map xs
+
+-- | Create new kind variable binder names corresponding to the return kind of
+-- a data type. This is useful when you have a data type like:
+--
+-- @
+-- data Foo :: forall k. k -> Type -> Type where ...
+-- @
+--
+-- But you want to be able to refer to the type @Foo a b@.
+-- 'mkExtraDKindBinders' will take the kind @forall k. k -> Type -> Type@,
+-- discover that is has two visible argument kinds, and return as a result
+-- two new kind variable binders @[a :: k, b :: Type]@, where @a@ and @b@
+-- are fresh type variable names.
+--
+-- This expands kind synonyms if necessary.
+mkExtraDKindBinders :: forall q. DsMonad q => DKind -> q [DTyVarBndrUnit]
+mkExtraDKindBinders k = do
+  k' <- expandType k
+  let (fun_args, _) = unravelDType k'
+      vis_fun_args  = filterDVisFunArgs fun_args
+  mapM mk_tvb vis_fun_args
+  where
+    mk_tvb :: DVisFunArg -> q DTyVarBndrUnit
+    mk_tvb (DVisFADep tvb) = return tvb
+    mk_tvb (DVisFAAnon ki) = DKindedTV <$> qNewName "a" <*> return () <*> return ki
+
+{- $localReification
+
+@template-haskell@ reification functions like 'reify' and 'qReify', as well as
+@th-desugar@'s 'reifyWithWarning', only look through declarations that either
+(1) have already been typechecked in the current module, or (2) are in scope
+because of imports. We refer to this as /global/ reification. Sometimes,
+however, you may wish to reify declarations that have been quoted but not
+yet been typechecked, such as in the following example:
+
+@
+example :: IO ()
+example = putStrLn
+  $(do decs <- [d| data Foo = MkFoo |]
+       info <- 'reify' (mkName \"Foo\")
+       stringE $ pprint info)
+@
+
+Because @Foo@ only exists in a TH quote, it is not available globally. As a
+result, the call to @'reify' (mkName \"Foo\")@ will fail.
+
+To make this sort of example possible, @th-desugar@ extends global reification
+with /local/ reification. A function that performs local reification (such
+as 'dsReify', 'reifyWithLocals', or similar functions that have a 'DsMonad'
+context) looks through both typechecked (or imported) declarations /and/ quoted
+declarations that are currently in scope. One can add quoted declarations in
+the current scope by using the 'withLocalDeclarations' function. Here is an
+example of how to repair the example above using 'withLocalDeclarations':
+
+@
+example2 :: IO ()
+example2 = putStrLn
+  $(do decs <- [d| data Foo = MkFoo |]
+       info <- 'withLocalDeclarations' decs $
+                 'reifyWithLocals' (mkName \"Foo\")
+       stringE $ pprint info)
+@
+
+Note that 'withLocalDeclarations' should only be used to add quoted
+declarations with names that are not duplicates of existing global or local
+declarations. Adding duplicate declarations through 'withLocalDeclarations'
+is undefined behavior and should be avoided. This is unlikely to happen if
+you are only using 'withLocalDeclarations' in conjunction with TH quotes,
+however. For instance, this is /not/ an example of duplicate declarations:
+
+@
+data T = MkT1
+
+$(do decs <- [d| data T = MkT2 |]
+     info <- 'withLocalDeclarations' decs ...
+     ...)
+@
+
+The quoted @data T = MkT2@ does not conflict with the top-level @data T = Mk1@
+since declaring a data type within TH quotes gives it a fresh, unique name that
+distinguishes it from any other data types already in scope.
+-}
