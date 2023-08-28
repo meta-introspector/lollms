@@ -181,3 +181,6 @@ outputs
 global_paths_cfg.yaml
 
 .vscode
+*#
+.#*
+*~
