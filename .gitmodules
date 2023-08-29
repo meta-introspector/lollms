@@ -1,0 +1,12 @@
+[submodule "vendor/lollms_bindings_zoo"]
+	path = vendor/lollms_bindings_zoo
+	url = https://github.com/meta-introspector/lollms_bindings_zoo
+[submodule "vendor/transformers"]
+	path = vendor/transformers
+	url = https://github.com/huggingface/transformers.git
+[submodule "vendor/AutoGPTQ"]
+	path = vendor/AutoGPTQ
+	url = https://github.com/PanQiWei/AutoGPTQ
+[submodule "vendor/ggml"]
+	path = vendor/ggml
+	url = https://github.com/meta-introspector/ggml

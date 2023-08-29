@@ -1,8 +1,5 @@
-#Hack of the LoLLMs
+# Hack of the LoLLMs
 
-layout of dirs:
-
-/mnt/data1/2023/08/02/ggml/bindings_zoo/
 
 # Lord of Large Language Models (LoLLMs)
 <div align="center">

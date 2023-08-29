@@ -1,13 +1,16 @@
+db_path: /mnt/data1/2023/08/02/ggml/data/database.db
+personalities:
+- english/coding/introspector
+
 active_personality_id: 0
 audio_in_language: en-US
 audio_out_voice: English United States
 audio_pitch: 1
 auto_speak: true
-auto_update: true
+auto_update: false
 binding_name: gptq
 config: local_config
 ctx_size: 8192
-db_path: /home/mdupont/ggml/data/database.db
 debug: true
 discussion_prompt_separator: '!@>'
 enable_gpu: true
@@ -16,8 +19,6 @@ model_name: llama2-7b-chat-codeCherryPop-qLoRA-GPTQ
 n_predict: 2056
 n_threads: 8
 override_personality_model_parameters: true
-personalities:
-- english/coding/introspector
 port: 9600
 repeat_last_n: 40
 repeat_penalty: 1.2

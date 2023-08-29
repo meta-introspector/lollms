@@ -110,6 +110,8 @@ class LollmsApplication:
     
     def load_model(self):
         try:
+            import pdb
+            pdb.set_trace()
             model = ModelBuilder(self.binding).get_model()
             for personality in self.mounted_personalities:
                 if personality is not None:
