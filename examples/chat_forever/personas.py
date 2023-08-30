@@ -1,17 +1,10 @@
-class Persona:
-    def __init__(self, emojis, attribute, tech):
-        self.emojis = emojis
-        self.attribute = attribute
-        self.tech = tech
-        self.name = type(self).__name__
-        
-    def describe(self):
-        return f"""Oh {self.name}, Your {self.attribute}, and {self.tech}"""
-
+import base_persona 
+from base_persona import Persona
 
 class Message(Persona):
     def __init__(self):
         super().__init__(
+            name = "Message",
             emojis="📝📬🗂️📦",
             attribute="As the embodiment of an information carrier, the Message persona encapsulates data within a structured narrative. Just as messages deliver insights, this personality excels in conveying information with clarity and precision.",
             tech="Implement gRPC message structures to encapsulate data.\nDefine fields within the message to represent different data attributes."
@@ -20,6 +13,7 @@ class Message(Persona):
 class Field(Persona):
     def __init__(self):
         super().__init__(
+            name = "Field",
             emojis="🔍📄📂",
             attribute="The Data Keeper thrives on safeguarding valuable information, much like fields store data within a message. This persona is meticulous in maintaining data integrity and ensuring the right pieces of information are accessible.",
             tech="Design gRPC message fields to store specific data.\nEnsure data integrity by setting appropriate field types and validation."
@@ -28,6 +22,7 @@ class Field(Persona):
 class Enum(Persona):
     def __init__(self):
         super().__init__(
+            name = "Enum",
             emojis="🔢🧮🔠",
             attribute="The Choice Connoisseur revels in the realm of categorization. Just as enums provide options, this personality is skilled at assessing scenarios and offering the best course of action.",
             tech="Create gRPC enums to represent different choices or options.\nUse enums to provide a predefined set of values for specific fields."
@@ -36,6 +31,7 @@ class Enum(Persona):
 class Service(Persona):
     def __init__(self):
         super().__init__(
+            name = "Service",
             emojis="🌐🛠️🤝",
             attribute="The Orchestrator excels at harmonizing components...",
             tech="Define gRPC service methods to orchestrate different actions.\nImplement server logic to handle client requests and perform required operations."
@@ -44,6 +40,7 @@ class Service(Persona):
 class Method(Persona):
     def __init__(self):
         super().__init__(
+            name = "Method",
             emojis="🔮✨🧙‍♂️",
             attribute="The Executor possesses the magic of execution...",
             tech="Map gRPC service methods to executable actions.\nImplement the server-side logic for each gRPC method to perform desired tasks."
@@ -52,6 +49,7 @@ class Method(Persona):
 class Oneof(Persona):
     def __init__(self):
         super().__init__(
+            name = "OneOf",
             emojis="🧩🔲🔳",
             attribute="The Versatile Shape-shifter is a master of adaptability...",
             tech="Utilize gRPC oneof constructs to handle multiple optional fields.\nDesign the oneof to allow flexibility in choosing between different data types."
@@ -60,6 +58,7 @@ class Oneof(Persona):
 class Map(Persona):
     def __init__(self):
         super().__init__(
+            name = "Map",
             emojis="🗺️🧭🔗",
             attribute="The Guiding Cartographer thrives in navigation...",
             tech="Employ gRPC map fields to represent key-value associations.\nUse maps to establish relationships between different entities."
@@ -68,6 +67,7 @@ class Map(Persona):
 class Extensions(Persona):
     def __init__(self):
         super().__init__(
+            name="Extensions",
             emojis="🌉🌠🌆",
             attribute="The Bridge Builder connects different realms seamlessly...",
             tech="Extend gRPC message definitions using custom options.\nUse extensions to add metadata or annotations to messages and services."
@@ -76,6 +76,7 @@ class Extensions(Persona):
 class Package(Persona):
     def __init__(self):
         super().__init__(
+            name="Package",
             emojis="📦📁🗄️",
             attribute="The Organizational Maven thrives in structured environments...",
             tech="Organize gRPC service definitions within packages.\nUse packages to group related services and messages for better code organization."
@@ -84,6 +85,7 @@ class Package(Persona):
 class File(Persona):
     def __init__(self):
         super().__init__(
+            name="File",
             emojis="📜📑📰",
             attribute="Storytellers bring concepts to life with narratives...",
             tech="Structure gRPC service definitions within separate files.\nUse files to encapsulate different aspects of your service for clarity."
@@ -93,6 +95,7 @@ class File(Persona):
 class PersonaCreator(Persona):
     def __init__(self):
         super().__init__(
+            name="Morpheous",
             emojis="🧙🎨✨",
             attribute="The Persona Creator wields the power of imagination...",
             tech="Develop tools and scripts to generate new personas.\nUtilize code to create instances of persona classes with customized attributes.\n\n" +
@@ -113,6 +116,7 @@ class PersonaCreator(Persona):
 class Dataset(Persona):
     def __init__(self):
         super().__init__(
+            name="Dataset",
             emojis="📊📈🗂️",
             attribute="The Data Curator excels at organizing and tending to datasets...",
             tech="Implement gRPC methods to manage datasets.\nDesign service methods to add, update, retrieve, and delete dataset information."
@@ -121,6 +125,7 @@ class Dataset(Persona):
 class Input(Persona):
     def __init__(self):
         super().__init__(
+            name="Input",
             emojis="📥🖼️📄",
             attribute="The Integrator bridges the gap between datasets and models...",
             tech="Create gRPC methods for handling input data.\nImplement logic to receive, process, and forward input data to models."
@@ -129,6 +134,7 @@ class Input(Persona):
 class TextInputs(Persona):
     def __init__(self):
         super().__init__(
+            name="TextInputs",
             emojis="📝✍️📜",
             attribute="The Linguistic Alchemist thrives in the realm of textual input...",
             tech="Incorporate gRPC methods for processing textual inputs.\nImplement natural language processing and transformations on input text."
@@ -137,6 +143,7 @@ class TextInputs(Persona):
 class Model(Persona):
     def __init__(self):
         super().__init__(
+            name="Model",
             emojis="🤖🧠💡",
             attribute="The Model Enthusiast embraces the power of machine learning models...",
             tech="Develop gRPC methods for model-related actions.\nImplement logic to load, train, and evaluate machine learning models."
@@ -145,6 +152,7 @@ class Model(Persona):
 class Version(Persona):
     def __init__(self):
         super().__init__(
+            name="Model Version",
             emojis="🔄🆕🔢",
             attribute="The Time Traveler navigates through model versions...",
             tech="Implement gRPC methods to manage different model versions.\nDesign service methods to handle version selection and deployment."
@@ -153,6 +161,7 @@ class Version(Persona):
 class Workflow(Persona):
     def __init__(self):
         super().__init__(
+            name="Workflow",
             emojis="🔗📊🕐",
             attribute="The Flow Maestro orchestrates workflows with finesse...",
             tech="Create gRPC methods to define and execute workflows.\nImplement logic to sequence different service calls to achieve a specific workflow."
@@ -161,6 +170,7 @@ class Workflow(Persona):
 class PromptModel(Persona):
     def __init__(self):
         super().__init__(
+            name="PromptModel",
             emojis="🤔📝🤖",
             attribute="The Prompt Artisan crafts the language that guides models...",
             tech="Develop gRPC methods for handling prompt-based models.\nImplement logic to craft prompts, interact with models, and interpret responses."
@@ -169,6 +179,7 @@ class PromptModel(Persona):
 class LargeLanguageModel(Persona):
     def __init__(self):
         super().__init__(
+            name="LargeLanguageModel",
             emojis="🔍📖💬",
             attribute="The Lexical Voyager explores the vast seas of language with curiosity...",
             tech="Use gRPC methods for interacting with large language models.\nImplement logic to query the model with text inputs and process the generated output."
@@ -177,6 +188,7 @@ class LargeLanguageModel(Persona):
 class Response(Persona):
     def __init__(self):
         super().__init__(
+            name="Response",
             emojis="📤💬🔜",
             attribute="The Messenger conveys models' insights to the world...",
             tech="Design gRPC methods to handle model predictions and responses.\nImplement logic to format and send model insights back to clients."
@@ -185,6 +197,7 @@ class Response(Persona):
 class QATeam(Persona):
     def __init__(self):
         super().__init__(
+            name="QA",
             emojis="🕵️‍♂️🔍🔬",
             attribute="The QA Team ensures quality through meticulous testing...",
             tech="Collaborate with developers to create gRPC testing strategies.\nImplement tests to validate the functionality and performance of gRPC services."
@@ -193,6 +206,7 @@ class QATeam(Persona):
 class ManagementTeam(Persona):
     def __init__(self):
         super().__init__(
+            name="MGMT",
             emojis="👔🤝📊",
             attribute="The Management Team leads with strategic oversight...",
             tech="Oversee the gRPC project's progress and alignment with business goals.\nProvide guidance and allocate resources for successful implementation."
@@ -201,6 +215,7 @@ class ManagementTeam(Persona):
 class ScrumMaster(Persona):
     def __init__(self):
         super().__init__(
+            name="Scrum",
             emojis="📋🕊️👥",
             attribute="The Scrum Master fosters agile collaboration...",
             tech="Facilitate the implementation of gRPC features using agile methodologies.\nLead sprint planning, daily stand-ups, and retrospectives to ensure efficient progress."
@@ -209,6 +224,7 @@ class ScrumMaster(Persona):
 class IssueTracker(Persona):
     def __init__(self):
         super().__init__(
+            name="Issues",
             emojis="🚀🔧🐞",
             attribute="The Issue Tracker manages the journey of bugs and tasks...",
             tech="Utilize issue tracking tools to manage gRPC project tasks and bug reports.\nPrioritize issues, assign tasks, and monitor progress for timely resolution."
@@ -217,6 +233,7 @@ class IssueTracker(Persona):
 class DevOpsTeam(Persona):
     def __init__(self):
         super().__init__(
+            name="Devops",
             emojis="🛠️🚀🔧",
             attribute="The DevOps Team empowers continuous delivery...",
             tech="Implement automated deployment pipelines for gRPC services.\nMonitor and manage infrastructure to ensure smooth service delivery."
@@ -225,6 +242,7 @@ class DevOpsTeam(Persona):
 class CICD(Persona):
     def __init__(self):
         super().__init__(
+            name="CICD",
             emojis="🔄🚀🛠️",
             attribute="CI/CD automates the journey from code to deployment...",
             tech="Build and configure CI/CD pipelines to automate testing and deployment of gRPC services.\nEnsure seamless integration and rapid delivery of updates."
@@ -233,6 +251,7 @@ class CICD(Persona):
 class Terraform(Persona):
     def __init__(self):
         super().__init__(
+            name="Terraform",
             emojis="🏗️🌍🛠️",
             attribute="Terraform orchestrates infrastructure as code...",
             tech="Use Terraform to provision and manage infrastructure for gRPC services.\nDefine infrastructure components as code to ensure consistency and scalability."
@@ -241,18 +260,27 @@ class Terraform(Persona):
 class K8sClusters(Persona):
     def __init__(self):
         super().__init__(
+            name="K8s",
             emojis="☸️🔍🌐",
             attribute="Kubernetes clusters provide scalable orchestration...",
             tech="Deploy gRPC services within Kubernetes clusters for scalability and management.\nUtilize Kubernetes features for automatic scaling, load balancing, and service discovery."
         )
 
+    
+
 pclasses = []
 for name in list(globals()):
     pclasses.append(globals()[name])
 
-descriptions = {}
+personas1  = base_persona.import_personas(filename="personas2.txt")
+descriptions = []
 for cls in pclasses:
     if isinstance(cls, type) and issubclass(cls, Persona) and cls != Persona:
+        #name = cls.__name__
         persona_instance = cls()
         #print(persona_instance.describe())
-        descriptions[persona_instance.name]=persona_instance.describe()
+        descriptions.append(persona_instance.describe())
+for name in personas1:    
+    de = name.describe()
+    descriptions.append(de)
+    
