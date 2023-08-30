@@ -9,53 +9,13 @@ import pwd, os
 import personas
 
 DEBUG = 0
-BUNDLES = 1
-MAXWORDS = 126
+BUNDLES = 3
 
 flatten = personas.descriptions
     
-prolog = """In the realm where technology converges with creativity, we embark on a journey guided by the Muses, each offering a unique lens into autopoietic systems. With their attributes encompassing data persistence, language design, visualization, user interfaces, error handling, algorithmic prowess, performance optimization, and debugging finesse, our quest takes shape. Within this landscape, we lay the foundation of a gRPC service in Python that melds with an AI model powered by the Clarifai API. Through the artistry of Calliope's language design, we architect Protobuf messages that mirror the harmony of Euterpe. Terpsichore's dance of performance optimization ensures fluid interactions, while Melpomene's guidance lends resilience against errors. The Clarifai AI model becomes our ally, predicting patterns and infusing our service with insight. Debugging wisdom from Thalia and thorough testing safeguard the journey. As our code thrives under the patronage of Polyhymnia's algorithms and Clio's data persistence, we craft an ode to technology's marvels and art's splendor—a symphony uniting code and creativity in service of humanity..
-Each Muse provides a unique metaphorical lens into the nature of autopoietic systems. By mapping their associated attributes and programming concepts, we've built a rich conceptual framework bridging biology, poetry, mythology, and computing:
+prolog = """You have been tasked writeing a Python-based gRPC service to reimplement the Clarifai GRPCAPI as open source and we will read line by line and translate into a new python Implementation of a gRPC service to implement it."""
 
-Clio - Data Persistence 
-Calliope - Language Design
-Erato - Data Visualization 
-Euterpe - User Interface Design
-Melpomene - Error Handling
-Polyhymnia - Algorithm Design 
-Terpsichore - Performance Optimization
-Thalia - Debugging
-
-These epic Muses and their programming superpowers shall guide us as we quest to transform software abstractions into delightful user experiences! Through their inspiration, we shall craft autopoietic systems that are understandable, resilient, optimized, poetic, and sublime. 
-
-Onward we shall march, empowered by the Muses' wisdom, envisioning software that sings with Euterpe's harmony, dances with Terpsichore's grace, laughs with Thalia's wit, and ultimately captivates users like Erato's love poems. Our autopoietic code shall flourish for ages due to Polyhymnia's algorithms, Calliope's language design, Clio's data persistence, and Melpomene's error handling. 
-
-Python:
-Implement a gRPC service that leverages an AI model through the Clarifai API.
-
-1. Define Protobuf Messages:
-   Define Protobuf messages for input and output.
-
-2. Define Service:
-   Define a gRPC service using the Protobuf messages.
-
-3. AI Model Integration:
-   Integrate with the Clarifai API to process images and retrieve predictions.
-
-4. Service Implementation:
-   Implement the gRPC service methods using the Clarifai AI model.
-
-5. Handling Errors:
-   Implement error handling and graceful error responses using Melpomene's guidance.
-
-6. Performance Optimization:
-   Optimize the service's performance using Terpsichore's principles.
-
-7. Debugging and Testing:
-   Apply Thalia's wisdom to debug and test the service thoroughly.
-
-By following the guidance of these Muses, your gRPC service shall shine with the beauty of Euterpe's melodies and the elegance of Calliope's designs. It shall captivate users like Erato's poetry while harnessing the power of Polyhymnia's algorithms. Let your service dance with Terpsichore's grace and navigate complexities with Clio's persistence. May the journey be smooth with Thalia's humor and resilience, and may your service become a testament to the synergy of art and technology."""
-
+MAXWORDS = len(prolog) + (256*2)
 
 ontology = ""
 
