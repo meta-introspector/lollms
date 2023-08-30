@@ -1,6 +1,7 @@
+
 db_path: /mnt/data1/2023/08/02/ggml/data/database.db
 personalities:
-- english/coding/introspector
+- english/generic/pytorch
 
 active_personality_id: 0
 audio_in_language: en-US

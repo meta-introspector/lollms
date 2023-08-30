@@ -145,8 +145,8 @@ class MyConversation(Conversation):
         print("start COUNT",len(self.text_ring_buffer))
 
     def gen_rewrite(self):
-        topic = "Protobuf api specification"
-        target= "Pytorch visualization using emojis"
+        topic = "Converting Bach's Music into Emojis"
+        target= "Pytorch conversion of tensors into emojis vectors"
         return random.choice(
             [
                 f"Rewrite this {topic} as a {target} implementation.",
