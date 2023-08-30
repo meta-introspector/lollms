@@ -273,14 +273,15 @@ for name in list(globals()):
     pclasses.append(globals()[name])
 
 personas1  = base_persona.import_personas(filename="personas2.txt")
-descriptions = []
+descriptions = {}
 for cls in pclasses:
     if isinstance(cls, type) and issubclass(cls, Persona) and cls != Persona:
         #name = cls.__name__
         persona_instance = cls()
         #print(persona_instance.describe())
-        descriptions.append(persona_instance.describe())
+        descriptions[persona_instance.name] =persona_instance.describe()
 for name in personas1:    
     de = name.describe()
-    descriptions.append(de)
+    #descriptions.append(de)
+    descriptions[name.name] =de
     

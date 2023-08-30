@@ -13,7 +13,7 @@ BUNDLES = 3
 
 flatten = personas.descriptions
     
-prolog = """You have been tasked writeing a Python-based gRPC service to reimplement the Clarifai GRPCAPI as open source and we will read line by line and translate into a new python Implementation of a gRPC service to implement it."""
+prolog = """You have been tasked with creating a new version of this code to add in creative emojis to represent the internal activations and encodings of another neural network."""
 
 MAXWORDS = len(prolog) + (256*2)
 
@@ -146,14 +146,15 @@ class MyConversation(Conversation):
 
     def gen_rewrite(self):
         topic = "Protobuf api specification"
+        target= "Pytorch visualization using emojis"
         return random.choice(
             [
-                f"Rewrite this {topic} as a Python gRPC service implementation.",
-                f"Please provide an example of how you would implement a gRPC service for this {topic} using Python.",
-                f"Reshape the given {topic} into a gRPC service code snippet in Python.",
-                f"Transform this {topic} into a Python code representation of a gRPC service.",
-                f"Generate a Python code snippet for a gRPC service that implements this {topic}.",
-                f"Craft a Python implementation of a gRPC service that embodies the essence of this {topic}.",
+                f"Rewrite this {topic} as a {target} implementation.",
+                f"Please provide an example of how you would implement a {target} for this {topic} using Python.",
+                f"Reshape the given {topic} into a {target} code snippet in Python.",
+                f"Transform this {topic} into a Python code representation of a {target}.",
+                f"Generate a Python code snippet for a {target} that implements this {topic}.",
+                f"Craft a Python implementation of a {target} that embodies the essence of this {topic}.",
             ]
         )
 
