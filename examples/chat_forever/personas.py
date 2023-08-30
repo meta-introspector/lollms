@@ -250,9 +250,9 @@ pclasses = []
 for name in list(globals()):
     pclasses.append(globals()[name])
 
-descripts = []
+descriptions = {}
 for cls in pclasses:
     if isinstance(cls, type) and issubclass(cls, Persona) and cls != Persona:
         persona_instance = cls()
         #print(persona_instance.describe())
-        descripts.append(persona_instance.describe())
+        descriptions[persona_instance.name]=persona_instance.describe()
