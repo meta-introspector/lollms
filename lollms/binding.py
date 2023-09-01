@@ -192,8 +192,9 @@ class LLMBinding:
 
         Returns:
             dict: A dictionary containing the loaded data from the local_config.yaml file.
-        """     
-        self.binding_config.config.save_config(self.configuration_file_path)
+        """
+        raise Exception("NO!")
+        #self.binding_config.config.save_config(self.configuration_file_path)
 
     
 

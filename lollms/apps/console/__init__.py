@@ -6,6 +6,7 @@ from lollms.helpers import ASCIIColors
 from lollms.paths import LollmsPaths
 from lollms.app import LollmsApplication
 from lollms.terminal import MainMenu
+#if self.personality.model is None :
 
 from typing import Callable
 from pathlib import Path
@@ -146,6 +147,8 @@ Participating personalities:
         """
         if n_predict == None:
             n_predict =self.personality.model_n_predicts
+        if self.personality.model is None :
+            raise Exception("no model")
         tk = self.personality.model.tokenize(full_discussion)
         n_tokens = len(tk)
         fd = self.personality.model.detokenize(tk[-min(self.config.ctx_size-self.n_cond_tk,n_tokens):])

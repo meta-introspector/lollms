@@ -102,13 +102,15 @@ class LollmsApplication:
     
     def load_model(self):
         try:
-            #import pdb
-            #pdb.set_trace()
             model = ModelBuilder(self.binding).get_model()
+                
             for personality in self.mounted_personalities:
                 if personality is not None:
                     personality.model = model
         except Exception as ex:
+            import pdb
+            pdb.set_trace()
+
             ASCIIColors.error(f"Couldn't load model. Please verify your configuration file at {self.lollms_paths.personal_configuration_path} or use the next menu to select a valid model")
             ASCIIColors.error(f"Binding returned this exception : {ex}")
             trace_exception(ex)
@@ -144,7 +146,10 @@ class LollmsApplication:
     def mount_personalities(self, callback = None):
         self.mounted_personalities = []
         to_remove = []
+        #import pdb
+        #pdb.set_trace()
         for i in range(len(self.config["personalities"])):
+            print("mounting", i)
             p = self.mount_personality(i, callback = None)
             if p is None:
                 to_remove.append(i)
@@ -152,7 +157,13 @@ class LollmsApplication:
         for i in to_remove:
             self.unmount_personality(i)
 
-        self.personality = self.mounted_personalities[self.config.active_personality_id]
+        if self.config.active_personality_id == -1:
+            print("No active persona")
+        else:
+            if len(self.mounted_personalities)>0:
+                print(self.config.active_personality_id)
+                print(self.mounted_personalities)
+                self.personality = self.mounted_personalities[self.config.active_personality_id]
 
     def set_personalities_callbacks(self, callback: Callable[[str, int, dict], bool]=None):
         for personality in self.mount_personalities:
@@ -166,7 +177,7 @@ class LollmsApplication:
             if self.config.active_personality_id>=id:
                 self.config.active_personality_id-=1
 
-            self.config.save_config()
+            #self.config.save_config()
             return True
         else:
             return False
@@ -176,7 +187,7 @@ class LollmsApplication:
         if id<len(self.config.personalities):
             self.config.active_personality_id = id
             self.personality = self.mount_personalities[id]
-            self.config.save_config()
+            #self.config.save_config()
             return True
         else:
             return False

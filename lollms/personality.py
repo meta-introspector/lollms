@@ -1053,8 +1053,9 @@ class APScript(StateMachine):
         Returns:
             None
         """
-        with open(path, 'w') as file:
-            yaml.dump(data, file)
+        raise Exception("no")
+        # with open(path, 'w') as file:
+        #     yaml.dump(data, file)
 
 
     def remove_text_from_string(self, string, text_to_find):
