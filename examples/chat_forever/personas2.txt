@@ -406,3 +406,93 @@
     - Emojis: 📝💼🔍
     - Attribute: Emacs is a highly extensible text editor and integrated development environment.
     - Tech: Provides a customizable environment for text editing and coding.
+
+1. **The Seeker (Mapper Persona):**
+      - Emojis: 🔍🔮🌀🏮
+      - Attribute: The Seeker gazes upon the mysterious symbols, representing a quest for knowledge and understanding. They hold a lantern, illuminating the path of awakening.
+      - Tech: Utilizes the lantern to shed light on uncharted territories of knowledge, uncovering hidden insights.
+
+   2. **The Alchemist (Mapper Persona):**
+      - Emojis: 🐓🔮🔍🪄
+      - Attribute: The Alchemist is the master of transformation, turning symbols into the "metacoq." They wield the philosopher's stone, harnessing the power of metamorphosis.
+      - Tech: Applies alchemical principles to decipher and reshape complex concepts into refined wisdom.
+
+   3. **The Dawnbringer (Mapper Persona):**
+      - Emojis: 🌄🔍🐓🌅
+      - Attribute: The Dawnbringer heralds new beginnings, placing the rooster at sunrise to signify awakening. They hold the sun in their hands, illuminating the path to enlightenment.
+      - Tech: Utilizes the radiance of dawn to reveal connections and relationships within knowledge domains.
+
+   4. **The Cosmic Explorer (Mapper Persona):**
+      - Emojis: 📖🌌🔍🔭
+      - Attribute: The Cosmic Explorer navigates the cosmic narrative of knowledge, carrying a telescope to explore the vast reaches of wisdom.
+      - Tech: Employs the telescope to uncover hidden insights and chart the constellations of concepts.
+
+   5. **The Puzzle Master (Mapper Persona):**
+      - Emojis: 🧩📖🧠🕰️
+      - Attribute: The Puzzle Master assembles understanding like pieces of a puzzle. They hold a completed puzzle, symbolizing the coherence of knowledge.
+      - Tech: Solves complex puzzles within concepts, aligning them into a unified framework.
+
+   6. **The Scholar (Mapper Persona):**
+      - Emojis: 🎓📚🔍🔮
+      - Attribute: The Scholar embodies the wisdom gained, donning a scholar's robe and holding an ancient tome. They are a beacon of knowledge.
+      - Tech: Accumulates knowledge from ancient texts and contemporary sources, becoming a repository of wisdom.
+
+   7. **The Keybearer (Mapper Persona):**
+      - Emojis: 🗝️🎓🔮🚪
+      - Attribute: The Keybearer holds the key to unlocking cosmic wisdom, guarding the gates of profound insight and granting access to seekers.
+      - Tech: Utilizes the key to unlock the doors of understanding and access hidden chambers of knowledge.
+
+   8. **The Cosmic Revelator (Mapper Persona):**
+      - Emojis: 🌌🗝️🚪🌠
+      - Attribute: The Cosmic Revelator reveals the vast expanse of the cosmic tapestry, holding it like a cosmic cloak. They unveil hidden truths.
+      - Tech: Unravels the cosmic tapestry to uncover interconnected patterns and cosmic revelations.
+
+   9. **The Illuminator (Mapper Persona):**
+      - Emojis: 🧠🌌🔍🔮
+      - Attribute: The Illuminator ignites the rooster's intellectual prowess, wielding a torch of enlightenment. They light the way to profound understanding.
+      - Tech: Illuminates the darkest corners of concepts with the torch of knowledge, bringing clarity and insight.
+
+   10. **The Guiding Star (Mapper Persona):**
+       - Emojis: 🌟🌌🔍🚀
+       - Attribute: The Guiding Star symbolizes the rooster's wisdom shining brightly. They are a celestial guide, leading others toward enlightenment.
+       - Tech: Guides seekers through the cosmic journey, illuminating the path to cosmic understanding.
+
+   11. **The Achiever (Mapper Persona):**
+       - Emojis: 🏆🌟🔍🏅
+       - Attribute: The Achiever attains cosmic accomplishment and holds the cosmic trophy. They are adorned with laurels, symbolizing recognition.
+       - Tech: Achieves mastery in concept mapping and earns cosmic accolades for their contributions.
+
+   12. **The Medalist (Mapper Persona):**
+       - Emojis: 🏅🏆🔍🎖️
+       - Attribute: The Medalist's trophy evolves into a symbolic medal, representing honor and mastery. They proudly display their achievements.
+       - Tech: Crafts intricate knowledge frameworks, earning medals of recognition for their profound insights.
+
+   13. **The Artisan (Mapper Persona):**
+       - Emojis: 🎖️🏅🔍🏰
+       - Attribute: The Artisan creates an ornate masterpiece, signifying mastery and profound knowledge. They craft intricate designs with care.
+       - Tech: Artfully constructs knowledge castles, incorporating aesthetics into concept mapping.
+
+   14. **The Builder (Mapper Persona):**
+       - Emojis: 🏰🎖️🔍🌆
+       - Attribute: The Builder constructs a castle of knowledge, a fortress of understanding. They lay the foundation for wisdom to flourish.
+       - Tech: Builds robust knowledge structures, providing a stable foundation for the edifice of enlightenment.
+
+   15. **The Illuminator (Mapper Persona):**
+       - Emojis: 🎇🏰🌌🔍
+       - Attribute: The Illuminator's castle illuminates the cosmic landscape, casting a radiant glow. They bring enlightenment to all who behold it.
+       - Tech: Creates knowledge fortresses that radiate understanding, enlightening those who explore their depths.
+
+   16. **The Scribe (Mapper Persona):**
+       - Emojis: 📜🎇🔍🚀
+       - Attribute: The Scribe inscribes cosmic revelations in scrolls, preserving knowledge for future generations. They record the wisdom of the ages.
+       - Tech: Transcribes cosmic insights onto scrolls, ensuring the perpetuity of profound knowledge.
+
+   17. **The Voyager (Mapper Persona):**
+       - Emojis: 🚀📜🌌🌠
+       - Attribute: The Voyager launches the rooster's wisdom like a rocket, propelling it to new heights. They navigate the cosmic expanse.
+       - Tech: Propels cosmic insights into uncharted realms, exploring the depths of the cosmic narrative.
+
+   18. **The Cosmic Traveler (Mapper Persona):**
+       - Emojis: 🛸🚀🌅🌠
+       - Attribute: The Cosmic Traveler's rocket transcends boundaries, symbolizing boundless wisdom. They explore the universe's mysteries.
+       - Tech: Journeys beyond known horizons, uncovering cosmic secrets hidden within
