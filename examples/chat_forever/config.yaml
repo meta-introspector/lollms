@@ -1,6 +1,5 @@
-
 db_path: /mnt/data1/2023/08/02/ggml/data/database.db
-personalities: [english/generic/pytorch]
+personalities: [english/generic/planner]
 active_personality_id: 0
 audio_in_language: en-US
 audio_out_voice: English United States
