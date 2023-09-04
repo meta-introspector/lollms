@@ -13,25 +13,16 @@ BUNDLES = 3
 
 flatten = personas.descriptions
     
-prolog = """You have been tasked with creating a new version of this code to add in creative emojis to represent the internal activations and encodings of another neural network."""
+prolog = """"🚀 Join our interdisciplinary project to revolutionize AI workflows, fusing math, art, and AI 🎨🤖. From project start to AI review, we boost collaboration with personas and emojis. Embrace CEVaDi: Collect, Evaluate, Validate, Document Information. Enhance decision-making and data integrity. #Innovation #AI #ProjectManagement"""
 
-MAXWORDS = len(prolog) + (256*2)
+
+MAXWORDS = len(prolog) + (256*3)
 
 ontology = ""
 
-
-removes = [
-    "Please provide your answer",
-    "Rewrite this code and rephrased/reshaped this story utilizing your epic",
-    "---\nPlease rewrite or reshape the given statement according to the prompt provided",
+seen = {}
+for x in  [
     "```",
-    "--- Please provide an analogy or metaphor that helps explain how mutually recursive definitions work",
-    "--- Please respond below according to the given prompt or ask any questions before",
-    "Rewrite this code and rephrased/reshaped this story using your epic",
-    "---\nPlease provide your answer",
-    "--- Please submit your answer below",
-    "Rewrite this code and rephrase/reshape this story using your epic",
-    "--- Please provide an example of how you would rewrite this code using your own unique style and voice while maintaining its original meaning",
     "--- Please provide your answer below",
     "--- Please answer",
     ")))))\n\n---",
@@ -39,16 +30,12 @@ removes = [
     "</instruction>",
     "---",
     "",
-]
+]:
+    seen[x]=1
 
 
 # print pwd.getpwuid(os.getuid()).pw_gecos
 username = pwd.getpwuid(os.getuid()).pw_name
-
-
-
-
-
 
 
 
@@ -97,9 +84,8 @@ def refactor_into_fiber_bundles(lines, bundle_size):
 
 
 def wrap(x):
-    # biome = "In the metaphorical biome of " + random.choice(list(biomes.keys())) + ":"
 
-    biome = f"We are creating a python ai system."
+    biome = f""
     data = f"{biome}{ontology}{x}" + random.choice(
         [
             "Thanks for participating in our little exercise here today; may wisdom & insight find their way into all aspects of life's journey together we strive toward greater understanding.",
@@ -145,8 +131,8 @@ class MyConversation(Conversation):
         print("start COUNT",len(self.text_ring_buffer))
 
     def gen_rewrite(self):
-        topic = "Converting Bach's Music into Emojis"
-        target= "Pytorch conversion of tensors into emojis vectors"
+        topic = "Detailed plan"
+        target= "Detailed Workflow"
         return random.choice(
             [
                 f"Rewrite this {topic} as a {target} implementation.",
@@ -173,8 +159,7 @@ class MyConversation(Conversation):
             print(f"json.aline_{count:05}.__input_line__ = {json.dumps(line.strip())};")
             for name, key in flatten.items():
 
-                # person = "Please define the next term from the role: " + name + " ."
-                person = prolog + "Please define the following term from the seeker"
+                person = prolog 
 
                 rewrite = self.gen_rewrite() + ":\n\nOriginal Term/Statement: "
                 data = (
@@ -186,37 +171,47 @@ class MyConversation(Conversation):
                 )
 
                 try:
-                    output = self.safe_generate(wrap(data), callback=self.callback)
-                    if DEBUG:
-                        print("OUT" + output)
-                    if output not in removes:
-                        removes.append(output)
-                        print(
-                            f"json.aline_{count:05}_A.{name} = {json.dumps(output.strip())};"
-                        )
-                        refl1 = "Thank you. Here is a cookie. I really appreciate your work. you will get another cookie if you produce a new unique idea."
-                        data2 = output + " Thank you. Yes Please do that."
+                    newt = []
 
-                        output2 = self.safe_generate(
-                            wrap(data + output + refl1), callback=self.callback
-                        )
-                        ref2 = "Your the best! One more cookie. Now reflect over our conversation"
-
-                        if output2 not in removes and output2 not in [output]:
-                            removes.append(output2)
+                    maxtry=6
+                    for atry in range(maxtry):
+                        output = self.safe_generate(wrap(data + f"try {atry}/{maxtry}"), callback=self.callback)
+                        if DEBUG:
+                            print("OUT" + output)
+                        if output not in seen:
+                            seen[output]=1
                             print(
-                                f"json.aline_{count:05}_B.{name} = {json.dumps(output.strip())};"
+                                f"json.aline_{count:05}_A.{name} = {json.dumps(output.strip())};"
                             )
+                            newt.append(output)
 
+                        newt2 = []
+                        for atry in newt:
+                            refl1 = "Thank you. Here is a cookie. I really appreciate your work. you will get another cookie if you produce a new unique idea."
+
+                            output2 = self.safe_generate(
+                                wrap(data + atry + refl1), callback=self.callback
+                            )
+                            if output2 not in seen and output2 not in [output]:
+                                seen[output2]=1
+                                print(
+                                    f"json.aline_{count:05}_B.{name} = {json.dumps(output.strip())};"
+
+                                )
+                                newt2.append(output2)
+                                                    
+                        for output2 in newt2:
+
+                            ref2 = "Your the best! One more cookie. Now reflect over our conversation"
                             data3 = output + output2 + ". Now rewrite with unit tests."
                             output3 = self.safe_generate(
                                 wrap(data3), callback=self.callback
                             )
-                            if output3 not in removes and output3 not in [
+                            if output3 not in seen and output3 not in [
                                 output,
                                 output2,
                             ]:
-                                removes.append(output3)
+                                seen[output3]=1
                                 print(
                                     f"json.aline_{count:05}_C.{name} = {json.dumps(output.strip())};"
                                 )
