@@ -13,21 +13,25 @@ BUNDLES = 4
 
 flatten = personas.descriptions
     
-prolog = """Implementing Protobufs for Clarifai API
+prolog = """Implementing StreamLit Task Execution via Protobufs for Clarifai API
 
 **Project Overview:**
-The primary objective of this project is to implement Protocol Buffers (Protobufs) for the Clarifai API. Protocol Buffers provide a language-agnostic, efficient, and extensible way to serialize structured data. By adopting Protobufs, we aim to enhance data interchange and communication within the Clarifai ecosystem.
+The primary objective of this project is to implement Streamlit based GUI for Protocol Buffers (Protobufs) for the Clarifai API. Protocol Buffers provide a language-agnostic, efficient, and extensible way to serialize structured data. By adopting Protobufs, we aim to enhance data interchange and communication within the Clarifai ecosystem.
 
 **Project Objectives:**
-- Define clear requirements for implementing Protobufs.
-- Design and structure Protobuf message schemas to represent Clarifai API data.
+- For the Protobuf messages, have the YAML/JSON/TOML schemas generate the `.proto` files automatically. Users only interact with the high-level schemas.
+- Build an intermediate layer to map the YAML schemas to Protobuf messages seamlessly. The UI only sees the YAML.
+- Create Streamlit forms using `st.form` and `st.form_submit_button`. The submit handler translates user input to Protobuf messages. 
+- Design emojigram interfaces for each task using intuitive emoji combinations. Map emojigrams to API requests internally
+- Use a library like `emoji` to convert between emojigrams and text for translation to Protobufs.
+- Manage decoding of Protobuf responses and presentation of results to users in the UI layer.
+- Implement error and progress notification using `st.info`, `st.warning`, `st.error` and loading spinners.
+- For workflows, maintain workflow state and execution logic in the intermediate layer, keeping the UI simple.
+- Design and structure Streamlit forms and yaml Protobuf message schemas to represent Clarifai API data.
 - Generate code bindings from Protobuf definitions for various programming languages.
-- Implement Clarifai API endpoints using Protobufs.
-- Perform comprehensive testing and validation of the Protobuf implementation.
-- Create documentation to guide developers on utilizing Protobufs and the Clarifai API effectively.
-   
+
 4. **Implement API Endpoints:**
-   - Incorporate Protobufs into the existing Clarifai API endpoints, ensuring smooth data serialization and deserialization.
+   - Create streamlit guis for all ideas
 
 """
 
@@ -36,47 +40,25 @@ MAXWORDS = len(prolog) + (256*3)
 
 ontology = """
 **Background Ontology for Clarifai API Protobufs**
-
 **Data Types:**
-
 1. **String (`str`):** A sequence of characters.
-   
 2. **Boolean (`bool`):** Represents a binary value, typically `True` or `False`.
-
 3. **Integer (`int`):** A whole number without a fractional part.
-
 4. **NoneType (`NoneType`):** Represents the absence of a value.
-
 5. **Descriptor (`google._upb._message.Descriptor`):** A descriptor for a Protocol Buffers message type.
-
 6. **ByNameMap (`google._upb._message._ByNameMap`):** A mapping structure for Protocol Buffers message types.
-
 7. **GenericSequence (`google._upb._message._GenericSequence`):** A generic sequence data structure.
-
 8. **FileDescriptor (`google._upb._message.FileDescriptor`):** Descriptor for a Protocol Buffers file.
-
-9. **Built-in Function or Method (`builtin_function_or_method`):** Predefined functions or methods in Python.
-
 10. **List (`list`):** An ordered collection of elements.
-
 11. **Dictionary (`dict`):** A collection of key-value pairs.
-
 **Ontological Relationships:**
-
 - **String, Boolean, Integer, NoneType:** These fundamental data types form the basis of data representation in various contexts.
-
 - **Descriptor, ByNameMap, GenericSequence, FileDescriptor:** These are specialized data types related to Protocol Buffers for defining and working with structured data.
-
 - **Built-in Function or Method:** Represents predefined functionalities available in the Python language.
-
 - **List, Dictionary:** These data structures provide a means of organizing and storing data efficiently.
-
 **Semantic Associations:**
-
 - Protocol Buffers (`Descriptor`, `ByNameMap`, `FileDescriptor`) are used to define structured data formats and facilitate efficient data interchange.
-
 - Lists (`list`) and Dictionaries (`dict`) are commonly used for organizing and manipulating data collections.
-
 - Built-in Functions and Methods provide core functionalities for various operations.
 """
 
