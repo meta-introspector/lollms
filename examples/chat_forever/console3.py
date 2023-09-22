@@ -9,16 +9,76 @@ import pwd, os
 import personas
 
 DEBUG = 0
-BUNDLES = 3
+BUNDLES = 4
 
 flatten = personas.descriptions
     
-prolog = """"🚀 Join our interdisciplinary project to revolutionize AI workflows, fusing math, art, and AI 🎨🤖. From project start to AI review, we boost collaboration with personas and emojis. Embrace CEVaDi: Collect, Evaluate, Validate, Document Information. Enhance decision-making and data integrity. #Innovation #AI #ProjectManagement"""
+prolog = """Implementing Protobufs for Clarifai API
+
+**Project Overview:**
+The primary objective of this project is to implement Protocol Buffers (Protobufs) for the Clarifai API. Protocol Buffers provide a language-agnostic, efficient, and extensible way to serialize structured data. By adopting Protobufs, we aim to enhance data interchange and communication within the Clarifai ecosystem.
+
+**Project Objectives:**
+- Define clear requirements for implementing Protobufs.
+- Design and structure Protobuf message schemas to represent Clarifai API data.
+- Generate code bindings from Protobuf definitions for various programming languages.
+- Implement Clarifai API endpoints using Protobufs.
+- Perform comprehensive testing and validation of the Protobuf implementation.
+- Create documentation to guide developers on utilizing Protobufs and the Clarifai API effectively.
+   
+4. **Implement API Endpoints:**
+   - Incorporate Protobufs into the existing Clarifai API endpoints, ensuring smooth data serialization and deserialization.
+
+"""
 
 
 MAXWORDS = len(prolog) + (256*3)
 
-ontology = ""
+ontology = """
+**Background Ontology for Clarifai API Protobufs**
+
+**Data Types:**
+
+1. **String (`str`):** A sequence of characters.
+   
+2. **Boolean (`bool`):** Represents a binary value, typically `True` or `False`.
+
+3. **Integer (`int`):** A whole number without a fractional part.
+
+4. **NoneType (`NoneType`):** Represents the absence of a value.
+
+5. **Descriptor (`google._upb._message.Descriptor`):** A descriptor for a Protocol Buffers message type.
+
+6. **ByNameMap (`google._upb._message._ByNameMap`):** A mapping structure for Protocol Buffers message types.
+
+7. **GenericSequence (`google._upb._message._GenericSequence`):** A generic sequence data structure.
+
+8. **FileDescriptor (`google._upb._message.FileDescriptor`):** Descriptor for a Protocol Buffers file.
+
+9. **Built-in Function or Method (`builtin_function_or_method`):** Predefined functions or methods in Python.
+
+10. **List (`list`):** An ordered collection of elements.
+
+11. **Dictionary (`dict`):** A collection of key-value pairs.
+
+**Ontological Relationships:**
+
+- **String, Boolean, Integer, NoneType:** These fundamental data types form the basis of data representation in various contexts.
+
+- **Descriptor, ByNameMap, GenericSequence, FileDescriptor:** These are specialized data types related to Protocol Buffers for defining and working with structured data.
+
+- **Built-in Function or Method:** Represents predefined functionalities available in the Python language.
+
+- **List, Dictionary:** These data structures provide a means of organizing and storing data efficiently.
+
+**Semantic Associations:**
+
+- Protocol Buffers (`Descriptor`, `ByNameMap`, `FileDescriptor`) are used to define structured data formats and facilitate efficient data interchange.
+
+- Lists (`list`) and Dictionaries (`dict`) are commonly used for organizing and manipulating data collections.
+
+- Built-in Functions and Methods provide core functionalities for various operations.
+"""
 
 seen = {}
 for x in  [
@@ -37,8 +97,6 @@ for x in  [
 # print pwd.getpwuid(os.getuid()).pw_gecos
 username = pwd.getpwuid(os.getuid()).pw_name
 
-
-
 def split_fibers(fibers, max_words=MAXWORDS):
     # Split each fiber into chunks of up to max_words words
     sfibers = []
@@ -48,7 +106,6 @@ def split_fibers(fibers, max_words=MAXWORDS):
             chunk = " ".join(words[i : i + max_words])
             sfibers.append(chunk)
     return sfibers
-
 
 def refactor_into_fiber_bundles(lines, bundle_size):
     bundles = []
@@ -88,21 +145,7 @@ def wrap(x):
     biome = f""
     data = f"{biome}{ontology}{x}" + random.choice(
         [
-            "Thanks for participating in our little exercise here today; may wisdom & insight find their way into all aspects of life's journey together we strive toward greater understanding.",
-            " Please provide your answer below.",
-            " Please provide your answer.",
-            "Please let me know if you have questions or need further clarification on anything.",
-            "We are looking forward to seeing what you come up with!",
-            "Please let me know if you need anything else from my side or have questions about the task.",
-            "Please provide an example of how you would approach each step of the process described above, including creating definitions for any new terms used in the problem.",
-            "Please let me know if you have questions or need further clarification on anything.",
-            "Please note that I will be grading based on how well you adhere to my instructions and also how imaginatively you respond within those constraints. So have fun while keeping in mind the requirements given above.",
-            "Please note that I will be grading based on how well you adhere to my instructions and also how imaginatively you respond within those constraints. So don't hold back! Be bold and creative while still maintaining coherency and clarity throughout your response.Thanks.",
-            "Please note that I will be grading based on content relevance, originality, and adherence to instructions provided above. Good",
-            "Please note that I will be grading based on how well you adhere to my instructions provided above. So make sure to follow them carefully before submitting anything.:)\nThanks.",
-            "Please note that I will be grading based on how well you adhere to my instructions provided above. So make sure to follow them carefully before submitting anything. Thanks",
-            "Please respond within one week or less if you are able to complete this request on time; otherwise, I will have no choice but to seek assistance from another consultant. Thank you.",
-            "Please respond below according to the given prompt or ask any questions before.",
+            "",
         ]
     )
     if DEBUG:
@@ -131,13 +174,10 @@ class MyConversation(Conversation):
         print("start COUNT",len(self.text_ring_buffer))
 
     def gen_rewrite(self):
-        topic = "Detailed plan"
-        target= "Detailed Workflow"
+        topic = "Snippet"
+        target= "Protobuf Server"
         return random.choice(
             [
-                f"Rewrite this {topic} as a {target} implementation.",
-                f"Please provide an example of how you would implement a {target} for this {topic} using Python.",
-                f"Reshape the given {topic} into a {target} code snippet in Python.",
                 f"Transform this {topic} into a Python code representation of a {target}.",
                 f"Generate a Python code snippet for a {target} that implements this {topic}.",
                 f"Craft a Python implementation of a {target} that embodies the essence of this {topic}.",
@@ -167,7 +207,7 @@ class MyConversation(Conversation):
                     + key
                     + rewrite
                     + line
-                    + ". Please definine in your own words:"
+                    + ". Please in your own words:"
                 )
 
                 try:
@@ -187,7 +227,7 @@ class MyConversation(Conversation):
 
                         newt2 = []
                         for atry in newt:
-                            refl1 = "Thank you. Here is a cookie. I really appreciate your work. you will get another cookie if you produce a new unique idea."
+                            refl1 = "Thank you. Here is a cookie. "
 
                             output2 = self.safe_generate(
                                 wrap(data + atry + refl1), callback=self.callback
@@ -201,20 +241,24 @@ class MyConversation(Conversation):
                                 newt2.append(output2)
                                                     
                         for output2 in newt2:
+                            data3 = output2
 
-                            ref2 = "Your the best! One more cookie. Now reflect over our conversation"
-                            data3 = output + output2 + ". Now rewrite with unit tests."
-                            output3 = self.safe_generate(
-                                wrap(data3), callback=self.callback
-                            )
-                            if output3 not in seen and output3 not in [
-                                output,
-                                output2,
-                            ]:
-                                seen[output3]=1
-                                print(
-                                    f"json.aline_{count:05}_C.{name} = {json.dumps(output.strip())};"
+                            for prompt in (
+                                    "Please rewrite as an instruction template",
+                                    "Please rewrite creativly",
+                                    "Listt the 96 concepts found in the following",
+                            ):
+                                output3 = self.safe_generate(
+                                    prompt + " " + wrap(data3), callback=self.callback
                                 )
+                                if output3 not in seen and output3 not in [
+                                        output,
+                                        output2,
+                                ]:
+                                    seen[output3]=1
+                                    print(
+                                        f"json.aline_{count:05}_C.{name} = {json.dumps(output.strip())};"
+                                    )
                         else:
                             if DEBUG:
                                 print("-", output2)
