@@ -278,6 +278,20 @@ cv = MyConversation(Path("config.yaml"))
     #     print(e)
     # raise e
 models = {}
+
+
+@app.route("/v1/models", methods=['GET'])
+def models():
+    data = [
+        {
+            "id": "gpt-3.5-turbo",
+            "object": "model",
+            "owned_by": "organization-owner",
+            "permission": []
+        }
+    ]
+    return {'data': data, 'object': 'list'}
+
 @app.route("/v1/engines/<model_name>/completions", methods=["POST"])
 def completions(model_name):
     # get the request data
@@ -353,8 +367,8 @@ def chat_completions():
     #prompt += "assistant: "
 
     # is it an alias?
-    if (model_name in models):
-        model_name = models[model_name]
+    #if (model_name in models):
+    #    model_name = models[model_name]
    
     # get the prompt and other parameters from the request data
     #prompt = data["prompt"]
@@ -369,6 +383,7 @@ def chat_completions():
 
     #for atry in range(maxtry):
     output = cv.safe_generate(prompt)
+    #output = "cv.safe_generate(prompt)"
 
     generated_text  = output
     
@@ -377,6 +392,30 @@ def chat_completions():
     #print("DEBUG OUT",data2.json)
     #print("DEBUG OUT",dir(data2))
     #return data2
+    #if not streaming:
+    completion_timestamp = int(time.time())
+    completion_id = ''.join(random.choices(
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', k=28))
+
+    return {
+        'id': 'chatcmpl-%s' % completion_id,
+            'object': 'chat.completion',
+            'created': completion_timestamp,
+            'model': model_name,
+            'usage': {
+                'prompt_tokens': 0,
+                'completion_tokens': 0,
+                'total_tokens': 0
+            },
+            'choices': [{
+                'message': {
+                    'role': 'assistant',
+                    'content': output
+                },
+                'finish_reason': 'stop',
+                'index': 0
+            }]
+        }
 
     #yield f'data: %s\n\n' % data2
 
@@ -411,15 +450,16 @@ def chat_completions():
             if token.startswith("an error occured"):
                 completion_data['choices'][0]['delta']['content'] = "Server Response Error, please try again.\n"
                 completion_data['choices'][0]['delta']['stop'] = "error"
-                yield 'data: %s\n\ndata: [DONE]\n\n' % json.dumps(completion_data, separators=(',' ':'))
+                #yield 'data: %s\n\ndata: [DONE]\n\n' % json.dumps(completion_data, separators=(',' ':'))
                 return
             yield 'data: %s\n\n' % json.dumps(completion_data, separators=(',' ':'))
             time.sleep(0.1)
 
-        completion_data['choices'][0]['finish_reason'] = "stop"
-        completion_data['choices'][0]['delta']['content'] = ""
-        yield 'data: %s\n\n' % json.dumps(completion_data, separators=(',' ':'))
-        yield 'data: [DONE]\n\n'
+        #completion_data['choices'][0]['finish_reason'] = "stop"
+        #completion_data['choices'][0]['delta']['content'] = ""
+        
+        #yield 'data: %s\n\n' % json.dumps(completion_data, separators=(',' ':'))
+        #yield 'data: [DONE]\n\n'
 
     return app.response_class(stream(), mimetype='text/event-stream')
 
@@ -445,7 +485,6 @@ def v1_engines():
             'created': None
         } for id in models.keys()]
     }))
-
 
 if __name__ == "__main__":
     app.run()
