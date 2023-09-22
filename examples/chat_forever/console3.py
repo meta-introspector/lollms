@@ -230,6 +230,7 @@ class MyConversation(Conversation):
                 except Exception as e:
                     stre = json.dumps(str(e)).replace(username,"USER")
                     print(f"json.aline_{count:05}_ERRROR.{name} = {stre}")
+                    raise e
 
     def callback(self, text, type=None, metadata: dict = {}):
         if DEBUG:

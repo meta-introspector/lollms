@@ -110,9 +110,8 @@ class LollmsApplication:
     
     def load_model(self):
         try:
-            #import pdb
-            #pdb.set_trace()
             model = ModelBuilder(self.binding).get_model()
+                
             for personality in self.mounted_personalities:
                 if personality is not None:
                     personality.model = model
@@ -155,6 +154,7 @@ class LollmsApplication:
         self.mounted_personalities = []
         to_remove = []
         for i in range(len(self.config["personalities"])):
+            print("mounting", i)
             p = self.mount_personality(i, callback = None)
             if p is None:
                 to_remove.append(i)
@@ -162,13 +162,17 @@ class LollmsApplication:
         for i in to_remove:
             self.unmount_personality(i)
 
+
         if self.config.active_personality_id>=0 and self.config.active_personality_id<len(self.mounted_personalities):
             self.personality = self.mounted_personalities[self.config.active_personality_id]
         else:
-            self.config["personalities"].insert(0, "generic/lollms")
-            self.mount_personality(0, callback = None)
-            self.config.active_personality_id = 0
-            self.personality = self.mounted_personalities[self.config.active_personality_id]
+            if len(self.mounted_personalities)>0:
+                self.config["personalities"].insert(0, "generic/lollms")
+                self.mount_personality(0, callback = None)
+                self.config.active_personality_id = 0
+                self.personality = self.mounted_personalities[self.config.active_personality_id]
+
+
     def set_personalities_callbacks(self, callback: Callable[[str, int, dict], bool]=None):
         for personality in self.mount_personalities:
             personality.setCallback(callback)
