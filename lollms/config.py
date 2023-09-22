@@ -103,6 +103,7 @@ class ConfigTemplate:
             raise ValueError("No configuration loaded.")
         for entry in self.template:
             if entry["name"] == key:
+                print("found",entry)
                 return entry
         return None
 

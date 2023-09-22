@@ -7,7 +7,7 @@ from lollms.config import InstallOption
 from lollms.helpers import trace_exception
 from lollms.terminal import MainMenu
 from typing import Callable
-
+import pprint
 import subprocess
 
 class LollmsApplication:
@@ -38,6 +38,9 @@ class LollmsApplication:
 
         try:
             if config.auto_update:
+                pprint.pprint(config.to_dict())
+                #pprint.pprint(dir(config))
+                raise Exception("why is this on?")
                 ASCIIColors.info("Bindings zoo found in your personal space.\nPulling last personalities zoo")
                 subprocess.run(["git", "-C", self.lollms_paths.bindings_zoo_path, "pull"])            
                 # Pull the repository if it already exists
@@ -148,9 +151,12 @@ class LollmsApplication:
             personality = None
         
         self.mounted_personalities.append(personality)
+
         return personality
     
     def mount_personalities(self, callback = None):
+        #import pdb
+        #pdb.set_trace()
         self.mounted_personalities = []
         to_remove = []
         for i in range(len(self.config["personalities"])):
@@ -172,6 +178,8 @@ class LollmsApplication:
                 self.config.active_personality_id = 0
                 self.personality = self.mounted_personalities[self.config.active_personality_id]
 
+        if not self.personality:
+            raise Exception("missing personality")
 
     def set_personalities_callbacks(self, callback: Callable[[str, int, dict], bool]=None):
         for personality in self.mount_personalities:

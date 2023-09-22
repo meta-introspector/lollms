@@ -51,10 +51,12 @@ class LOLLMSConfig(BaseConfig):
                 
         if file_path:
             self.file_path = Path(file_path)
+            
         else:
             self.file_path = None
 
         if file_path is not None:
+            print("loading",file_path)
             self.load_config(file_path)
         else:
             self.config = DEFAULT_CONFIG.copy()

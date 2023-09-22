@@ -40,12 +40,13 @@ class Conversation(LollmsApplication):
         config = LOLLMSConfig.autoload(lollms_paths, configuration_path)
 
         super().__init__("lollms-console",config, lollms_paths)
+        if not self.personality:
+            raise Exception("missing personality")
 
         if show_logo:
             self.menu.show_logo()
         if show_commands_list:
             self.menu.show_commands_list()
-            
         if show_personality_infos:
             print()
             print(f"{ASCIIColors.color_green}-----------------------------------------------------------------")
