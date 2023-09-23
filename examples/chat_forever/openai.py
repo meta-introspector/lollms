@@ -2,6 +2,8 @@ from lollms.apps.console import Conversation
 import sys
 import time
 maxtry=10
+import dirtyjson
+import streamlit as st
 from collections import deque
 from pathlib import Path
 import json
@@ -292,64 +294,64 @@ def models():
     ]
     return {'data': data, 'object': 'list'}
 
-@app.route("/v1/engines/<model_name>/completions", methods=["POST"])
-def completions(model_name):
-    # get the request data
-    #print("completions", request.text)
-    data = request.get_json(force=True)
-    # is it an alias?
-    if (model_name in models):
-        model_name = models[model_name]
+# @app.route("/v1/engines/<model_name>/completions", methods=["POST"])
+# def completions(model_name):
+#     # get the request data
+#     #print("completions", request.text)
+#     data = request.get_json(force=True)
+#     # is it an alias?
+#     if (model_name in models):
+#         model_name = models[model_name]
    
-    # get the prompt and other parameters from the request data
-    prompt = data["prompt"]
-    max_tokens = data.get("max_tokens", 16)
-    temperature = data.get("temperature", 1.0)
-    top_p = data.get("top_p", 0.75)
-    top_k = data.get("top_k", 40)
-    num_beams = data.get("num_beams", 1)
-    max_new_tokens = data.get("max_new_tokens", 256)
+#     # get the prompt and other parameters from the request data
+#     prompt = data["prompt"]
+#     max_tokens = data.get("max_tokens", 16)
+#     temperature = data.get("temperature", 1.0)
+#     top_p = data.get("top_p", 0.75)
+#     top_k = data.get("top_k", 40)
+#     num_beams = data.get("num_beams", 1)
+#     max_new_tokens = data.get("max_new_tokens", 256)
 
-    #kwargs = decode_kwargs(data)
+#     #kwargs = decode_kwargs(data)
     
-    if (model_name in llamaModels):
-        #generated_text = evaluate_llama(prompt,**kwargs)
-        generated_text = evaluate_llama(prompt,
-                                        #input = prompt,
-                                        temperature=temperature,
-                                        top_p=top_p,
-                                        top_k=top_k,
-                                        num_beams=num_beams,
-                                        max_new_tokens=max_new_tokens,
-                                        **kwargs)
+#     if (model_name in llamaModels):
+#         #generated_text = evaluate_llama(prompt,**kwargs)
+#         generated_text = evaluate_llama(prompt,
+#                                         #input = prompt,
+#                                         temperature=temperature,
+#                                         top_p=top_p,
+#                                         top_k=top_k,
+#                                         num_beams=num_beams,
+#                                         max_new_tokens=max_new_tokens,
+#                                         **kwargs)
 
-    # else:
-    #     input_ids = tokenizer.encode(prompt, return_tensors='pt')
-    #     output = model.generate(input_ids=input_ids,
-    #                             max_length=max_tokens, 
-    #                             temperature=temperature,
-    #                             top_p=top_p,
-    #                             top_k=top_k,
-    #                             **kwargs)
-    #     generated_text = tokenizer.decode(output[0], skip_special_tokens=True)
+#     # else:
+#     #     input_ids = tokenizer.encode(prompt, return_tensors='pt')
+#     #     output = model.generate(input_ids=input_ids,
+#     #                             max_length=max_tokens, 
+#     #                             temperature=temperature,
+#     #                             top_p=top_p,
+#     #                             top_k=top_k,
+#     #                             **kwargs)
+#     #     generated_text = tokenizer.decode(output[0], skip_special_tokens=True)
 
-    # prompt_tokens = len(tokenizer.encode(prompt))
-    # completion_tokens = len(tokenizer.encode(generated_text))
-    # total_tokens = prompt_tokens + completion_tokens
-    # return jsonify( {
-    #         'object': 'text_completion',
-    #         'id': 'dummy',
-    #         'created': int(time.time()),
-    #         'model': model_name,
-    #         'choices': 
-    #             [{'text': generated_text, 'finish_reason': 'length'}],
-    #         'usage': {
-    #                 'prompt_tokens': prompt_tokens,
-    #                 'completion_tokens': completion_tokens,
-    #                 'total_tokens': total_tokens
-    #                 }
-    #             }
-    #         )
+#     # prompt_tokens = len(tokenizer.encode(prompt))
+#     # completion_tokens = len(tokenizer.encode(generated_text))
+#     # total_tokens = prompt_tokens + completion_tokens
+#     # return jsonify( {
+#     #         'object': 'text_completion',
+#     #         'id': 'dummy',
+#     #         'created': int(time.time()),
+#     #         'model': model_name,
+#     #         'choices': 
+#     #             [{'text': generated_text, 'finish_reason': 'length'}],
+#     #         'usage': {
+#     #                 'prompt_tokens': prompt_tokens,
+#     #                 'completion_tokens': completion_tokens,
+#     #                 'total_tokens': total_tokens
+#     #                 }
+#     #             }
+#     #         )
     
 @app.route("/v1/chat/completions", methods=["POST"])
 def chat_completions():
@@ -382,10 +384,15 @@ def chat_completions():
     #kwargs = decode_kwargs(data)
 
     #for atry in range(maxtry):
-    output = cv.safe_generate(prompt)
-    #output = "cv.safe_generate(prompt)"
-
-    generated_text  = output
+    output = None
+    output1 = cv.safe_generate(prompt)
+        #try:
+        #    print("output", output1)
+        #    dd = dirtyjson.loads(output1)
+        #    output= json.dumps(dd)
+        #except Exception as e:
+        #            print("ERROR",e,output1)
+        
     
     #data2 =jsonify()
     #print("DEBUG OUT",data2)
@@ -397,7 +404,43 @@ def chat_completions():
     completion_id = ''.join(random.choices(
         'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', k=28))
 
-    return {
+    #     ```ts
+    # interface Response {
+    # thoughts: {
+    # // Thoughts
+    # text: string;
+    # reasoning: string;
+    # // Short markdown-style bullet list that conveys the long-term plan
+    # plan: string;
+    # // Constructive self-criticism
+    # criticism: string;
+    # // Summary of thoughts to say to the user
+    # speak: string;
+    # };
+    # command: {
+    # name: string;
+    # args: Record<string, any>;
+    # };
+    # }
+    jsondata= json.dumps({
+        "command": {
+            "name": "request_assistance",
+            "args": {
+                "ticket_url": "[Ticket URL]",
+                "next_action": "poll_url"
+            }
+        },        
+        "thoughts": {
+            "plan": "Initiated a request for assistance.",
+            "speak": "TODO",
+            "criticism": "todo",
+            "reasoning" : "todo",
+            "text": "I encountered an issue with our application, and I need assistance. I've created a ticket for it. Here's the URL to the ticket: [Ticket URL]. My next action is to poll that URL for updates."
+        } })
+    
+    output_data = f"""```{jsondata}```"""
+
+    data= {
         'id': 'chatcmpl-%s' % completion_id,
             'object': 'chat.completion',
             'created': completion_timestamp,
@@ -407,16 +450,16 @@ def chat_completions():
                 'completion_tokens': 0,
                 'total_tokens': 0
             },
-            'choices': [{
-                'message': {
-                    'role': 'assistant',
-                    'content': output
-                },
-                'finish_reason': 'stop',
-                'index': 0
-            }]
+        "command": {
+            "name": "request_assistance",
+            "args": {
+                "ticket_url": "[Ticket URL]",
+                "next_action": "poll_url"
+            }
         }
-
+    }
+    print("DEBUG",data)
+    return data
     #yield f'data: %s\n\n' % data2
 
     #    return Response(inter(msg, messages), mimetype="text/event-stream")
