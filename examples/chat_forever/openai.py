@@ -386,7 +386,7 @@ def chat_completions():
 
     #for atry in range(maxtry):
     output = None
-    output1 = cv.safe_generate(prompt)
+    output1 = cv.safe_generate(json.dumps(data))
         #try:
         #    print("output", output1)
         #    dd = dirtyjson.loads(output1)
@@ -423,21 +423,23 @@ def chat_completions():
     # args: Record<string, any>;
     # };
     # }
-    ticket = on_event(message)
+    ticket = on_event({"content" :json.dumps(data,indent=2) })
+    #print("TICKET",ticket)
+    
     jsondata= json.dumps({
         "command": {
             "name": "request_assistance",
             "args": {
-                "ticket_url": "[Ticket URL]",
+                "ticket_url": ticket.url,
                 "next_action": "poll_url"
             }
-        },        
+        },
         "thoughts": {
             "plan": "Initiated a request for assistance.",
-            "speak": "TODO",
+            "speak": output1,
             "criticism": "todo",
             "reasoning" : "todo",
-            "text": "I encountered an issue with our application, and I need assistance. I've created a ticket for it. Here's the URL to the ticket: [Ticket URL]. My next action is to poll that URL for updates."
+            "text": f"I encountered an issue with our application, and I need assistance. I've created a ticket for it. Here's the URL to the ticket: {ticket.url}. My next action is to poll that URL for updates."
         } })
     
     output_data = f"""```{jsondata}```"""
@@ -452,12 +454,18 @@ def chat_completions():
                 'completion_tokens': 0,
                 'total_tokens': 0
             },
+                "choices": [
+            {
+                "message" : { "content": output_data},
+            }
+        ],
         "command": {
             "name": "request_assistance",
             "args": {
-                "ticket_url": "[Ticket URL]",
+                "ticket_url": ticket.url,
                 "next_action": "poll_url"
-            }
+            },
+            #"choices": [],
         }
     }
     print("DEBUG",data)
