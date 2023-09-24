@@ -1,5 +1,6 @@
 from lollms.apps.console import Conversation
 import sys
+from  ai_ticket.events.inference import on_event
 import time
 maxtry=10
 import dirtyjson
@@ -422,6 +423,7 @@ def chat_completions():
     # args: Record<string, any>;
     # };
     # }
+    ticket = on_event(message)
     jsondata= json.dumps({
         "command": {
             "name": "request_assistance",
