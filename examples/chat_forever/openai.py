@@ -424,7 +424,7 @@ def chat_completions():
     # };
     # }
     ticket = on_event({"content" :json.dumps(data,indent=2) })
-    #print("TICKET",ticket)
+    print("TICKET",ticket)
 
     if ticket:
         ticket_url = ticket.url
