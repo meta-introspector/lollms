@@ -425,12 +425,17 @@ def chat_completions():
     # }
     ticket = on_event({"content" :json.dumps(data,indent=2) })
     #print("TICKET",ticket)
+
+    if ticket:
+        ticket_url = ticket.url
+    else:
+        ticket_url = str(ticket)
     
     jsondata= json.dumps({
         "command": {
             "name": "request_assistance",
             "args": {
-                "ticket_url": ticket.url,
+                "ticket_url": ticket_url,
                 "next_action": "poll_url"
             }
         },
@@ -439,7 +444,7 @@ def chat_completions():
             "speak": output1,
             "criticism": "todo",
             "reasoning" : "todo",
-            "text": f"I encountered an issue with our application, and I need assistance. I've created a ticket for it. Here's the URL to the ticket: {ticket.url}. My next action is to poll that URL for updates."
+            "text": f"I encountered an issue with our application, and I need assistance. I've created a ticket for it. Here's the URL to the ticket: {ticket_url}. My next action is to poll that URL for updates."
         } })
     
     output_data = f"""```{jsondata}```"""
@@ -462,7 +467,7 @@ def chat_completions():
         "command": {
             "name": "request_assistance",
             "args": {
-                "ticket_url": ticket.url,
+                "ticket_url": ticket_url,
                 "next_action": "poll_url"
             },
             #"choices": [],
