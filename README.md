@@ -1,5 +1,12 @@
 # Hack of the LoLLMs
 
+```
+echo "github_pat_ab....ef" > ~/.pat
+export GITHUB_PAT=`cat  ~/.pat`
+export GITHUB_REPO='jmikedupont2/ai-ticket'
+python -m examples.chat_forever.openai
+http://127.0.0.1:5000
+```
 
 # Lord of Large Language Models (LoLLMs)
 <div align="center">
