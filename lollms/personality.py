@@ -7,7 +7,7 @@ from lollms.binding import LLMBinding
 
 import pkg_resources
 from pathlib import Path
-from PIL import Image
+#from PIL import Image
 from typing import Optional, List
 import re
 from datetime import datetime
@@ -130,7 +130,7 @@ Date: {{date}}
         
         self._processor_cfg: dict = {}
 
-        self._logo: Optional[Image.Image] = None
+        #self._logo: Optional[Image.Image] = None
         self._processor = None
 
         if personality_package_path is None:
@@ -247,8 +247,8 @@ Date: {{date}}
 
         # Check for a logo file
         self.logo_path = self.personality_package_path / "assets" / "logo.png"
-        if self.logo_path.is_file():
-            self._logo = Image.open(self.logo_path)
+        #if self.logo_path.is_file():
+        #    self._logo = Image.open(self.logo_path)
 
         # Get the assets folder path
         self.assets_path = self.personality_package_path / "assets"

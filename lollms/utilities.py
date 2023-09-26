@@ -1,6 +1,6 @@
 from lollms.helpers import ASCIIColors, trace_exception
-from sklearn.feature_extraction.text import TfidfVectorizer
-import numpy as np
+#from sklearn.feature_extraction.text import TfidfVectorizer
+#import numpy as np
 from pathlib import Path
 import json
 import re
@@ -502,7 +502,8 @@ class TextVectorizer:
         
     def index(self):
         if self.vectorization_method=="ftidf_vectorizer":
-            self.vectorizer = TfidfVectorizer()
+            #self.vectorizer = TfidfVectorizer()
+            raise Exeception("dotod")
             #if self.debug:
             #    ASCIIColors.yellow(','.join([len(chunk) for chunk in chunks]))
             data=[]
