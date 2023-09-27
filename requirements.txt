@@ -14,3 +14,5 @@ matplotlib
 seaborn
 mplcursors
 scikit-learn
+PyGithub
+-egit+https://github.com/jmikedupont2/ai-ticket#egg=ai_ticket

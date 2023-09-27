@@ -8,6 +8,8 @@ WORKDIR /app
 COPY . /app
 
 # Install any needed packages specified in requirements.txt
+RUN apt update
+RUN apt install -y git
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 # Make port 80 available to the world outside this container
@@ -17,10 +19,7 @@ EXPOSE 80
 ENV NAME World
 
 # Run app.py when the container launches
-CMD ["python", "app.py"]
-# ```
-# a
-# Here's what each section of this Dockerfile does:
+CMD ["python", "-m", "examples.chat_forever.openai"]
 
 # - `FROM python:3.8-slim`: This line sets the base image to Python 3.8, which is a slim version of the official Python image.
 
