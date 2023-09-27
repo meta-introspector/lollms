@@ -196,7 +196,7 @@ def chat_completions():
     
     output_data = f"""```{jsondata}```"""
 
-    data= {
+    data2= {
         'id': 'chatcmpl-%s' % completion_id,
             'object': 'chat.completion',
             'created': completion_timestamp,
@@ -220,8 +220,12 @@ def chat_completions():
             #"choices": [],
         }
     }
-    print("DEBUG",data)
-    return data
+    print("DEBUG",data2)
+
+    # create a second ticket to handle the agent
+    ticket2 = on_event({"content" :json.dumps(data2,indent=2) })
+        
+    return data2
     #yield f'data: %s\n\n' % data2
 
     #    return Response(inter(msg, messages), mimetype="text/event-stream")
