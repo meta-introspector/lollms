@@ -423,13 +423,8 @@ def chat_completions():
     # args: Record<string, any>;
     # };
     # }
-    ticket = on_event({"content" :json.dumps(data,indent=2) })
-    print("TICKET",ticket)
-
-    if ticket:
-        ticket_url = ticket.url
-    else:
-        ticket_url = str(ticket)
+    ticket_url = on_event({"content" :json.dumps(data,indent=2) })
+    print("TICKET",ticket_url)
     
     jsondata= json.dumps({
         "command": {
@@ -449,7 +444,7 @@ def chat_completions():
     
     output_data = f"""```{jsondata}```"""
 
-    data= {
+    data2= {
         'id': 'chatcmpl-%s' % completion_id,
             'object': 'chat.completion',
             'created': completion_timestamp,
@@ -473,8 +468,8 @@ def chat_completions():
             #"choices": [],
         }
     }
-    print("DEBUG",data)
-    return data
+    print("DEBUG",data2)
+    return data2
     #yield f'data: %s\n\n' % data2
 
     #    return Response(inter(msg, messages), mimetype="text/event-stream")
