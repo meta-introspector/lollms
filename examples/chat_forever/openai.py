@@ -13,7 +13,7 @@ from flask import Flask, make_response, request, abort
 from flask.json import jsonify
 DEBUG = 0
 BUNDLES = 4
-username = pwd.getpwuid(os.getuid()).pw_name
+username = "username"
 app = Flask(__name__)
 models = {}
 
