@@ -1,5 +1,7 @@
 # Use an official Python runtime as a parent image
-FROM ai_ticket
+#FROM ai_ticket
+ARG OFFICIAL_PYTHON_IMAGE
+FROM ${OFFICIAL_PYTHON_IMAGE} 
 
 # Set the working directory to /app
 WORKDIR /app
