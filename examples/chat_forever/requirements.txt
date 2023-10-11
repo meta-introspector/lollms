@@ -72,3 +72,4 @@ Werkzeug==2.3.7
 wget==3.2
 wsproto==1.2.0
 PyGithub
+docker

@@ -1,6 +1,7 @@
 from lollms.apps.console import Conversation
 import sys
 from  ai_ticket.events.inference import on_event
+from examples.chat_forever import docker_controller
 import time
 maxtry=10
 from collections import deque
@@ -127,13 +128,12 @@ def chat_completions():
                 "plan": "User is to replace this.",
                 "speak": "This is where you speak to the requesting user. Replace the command above and this text with your results",
                 "criticism": "todo",
-                "reasoning" : "todo",
+                "reasoning" : json.dumps(docker_controller.inspect()),
                 "text": f"This template will be executed."
             }}
     # create a second ticket to handle the agent
     ticket2 = on_event({"content" : json.dumps(data2) })
     ticket_url = ticket2
-
 
     return {
         'id': 'chatcmpl-%s' % completion_id,
