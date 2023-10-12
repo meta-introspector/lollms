@@ -16,5 +16,5 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 COPY . /app/
 # Run app.py when the container launches
-CMD ["python", "-m", "examples.chat_forever.openai","--host","0.0.0.0"]
+CMD ["python", "-m", "lollms.apps.elf","--host","0.0.0.0"]
 

@@ -16,7 +16,7 @@ bindings_zoo_repo = "https://github.com/ParisNeo/lollms_bindings_zoo.git"
 extensions_zoo_repo = "https://github.com/ParisNeo/lollms_extensions_zoo.git"
 gptqlora_repo = "https://github.com/ParisNeo/gptqlora.git"
 
-# Now we speify the personal folders
+# Now we specify the personal folders
 class LollmsPaths:
     def __init__(self, global_paths_cfg_path=None, lollms_path=None, personal_path=None, custom_default_cfg_path=None, tool_prefix=""):
         self.global_paths_cfg_path  = global_paths_cfg_path
@@ -26,7 +26,7 @@ class LollmsPaths:
         else:
             lollms_path             = Path(lollms_path)
         if personal_path is None:
-            personal_path           = Path.home() / "Documents/lollms"
+            personal_path           = "/app/"
         else:
             personal_path           = Path(personal_path)
         
@@ -181,7 +181,11 @@ class LollmsPaths:
     def find_paths(force_local=False, custom_default_cfg_path=None, tool_prefix=""):
         lollms_path = Path(__file__).parent
         global_paths_cfg_path = Path(f"./{tool_prefix}global_paths_cfg.yaml")
+        #print("TODO",global_paths_cfg_path)
+        #import pdb
+        #pdb.set_trace()
         if global_paths_cfg_path.exists():
+            #print("There",global_paths_cfg_path)
             try:
                 cfg = BaseConfig()
                 cfg.load_config(global_paths_cfg_path)
