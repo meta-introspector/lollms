@@ -33,7 +33,6 @@ def inspect():
 
         #attrs2 = container.attrs
         #attrs2['envs'] = envs
-        #pdb.set_trace()
         #print( attrs['Config']['Env'])
         #print( keys)
         toclean = json.dumps(dict(
