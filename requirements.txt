@@ -16,3 +16,7 @@ mplcursors
 scikit-learn
 PyGithub
 /opt/ai-ticket
+docker
+langchain[llm]
+openai
+tiktoken

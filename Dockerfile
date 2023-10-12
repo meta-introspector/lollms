@@ -7,11 +7,12 @@ FROM ${BASE_IMAGE}
 WORKDIR /app
 
 # Copy the current directory contents into the container at /app
+RUN apt update
+RUN apt install -y git
+
 COPY requirements.txt /app/requirements.txt
 
 # Install any needed packages specified in requirements.txt
-RUN apt update
-RUN apt install -y git
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 COPY . /app/

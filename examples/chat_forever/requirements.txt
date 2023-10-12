@@ -73,3 +73,5 @@ wget==3.2
 wsproto==1.2.0
 PyGithub
 docker
+langchain[llm]
+openai

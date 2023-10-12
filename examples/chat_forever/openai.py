@@ -18,6 +18,18 @@ username = "username"
 app = Flask(__name__)
 models = {}
 
+from langchain.llms import OpenAI
+from langchain.prompts import PromptTemplate
+from langchain.chains import LLMChain
+llm = OpenAI()
+template = """Question: {question}
+
+Answer: Let's think step by step."""
+
+prompt = PromptTemplate(template=template, input_variables=["question"])
+llm_chain = LLMChain(prompt=prompt, llm=llm)
+
+
 @app.route("/v1/models", methods=['GET'])
 def models():
     data = [
@@ -46,57 +58,13 @@ def chat_completions():
         prompt += message["role"] + ": " + message["content"] + "\n"
     #prompt += "assistant: "
 
-    # get the prompt and other parameters from the request data
-    #prompt = data["prompt"]
-    max_tokens = data.get("max_tokens", 16)
-    temperature = data.get("temperature", 1.0)
-    top_p = data.get("top_p", 0.75)
-    top_k = data.get("top_k", 40)
-    num_beams = data.get("num_beams", 1)
-    max_new_tokens = data.get("max_new_tokens", 256)
-
-    #kwargs = decode_kwargs(data)
-
-    #for atry in range(maxtry):
-    output = None
-    output1 = "TODO:cv.safe_generate(json.dumps(data))"
-        #try:
-        #    print("output", output1)
-        #    dd = dirtyjson.loads(output1)
-        #    output= json.dumps(dd)
-        #except Exception as e:
-        #            print("ERROR",e,output1)
-        
+    question = prompt
     
-    #data2 =jsonify()
-    #print("DEBUG OUT",data2)
-    #print("DEBUG OUT",data2.json)
-    #print("DEBUG OUT",dir(data2))
-    #return data2
-    #if not streaming:
+    output1 = llm_chain.run(question)
     completion_timestamp = int(time.time())
     completion_id = ''.join(random.choices(
         'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', k=28))
 
-    #     ```ts
-    # interface Response {
-    # thoughts: {
-    # // Thoughts
-    # text: string;
-    # reasoning: string;
-    # // Short markdown-style bullet list that conveys the long-term plan
-    # plan: string;
-    # // Constructive self-criticism
-    # criticism: string;
-    # // Summary of thoughts to say to the user
-    # speak: string;
-    # };
-    # command: {
-    # name: string;
-    # args: Record<string, any>;
-    # };
-    # }
-    
     # create a ticket for the request
     ticket = on_event({"content" :json.dumps(data,indent=2) })
     print("TICKET",ticket)
@@ -125,7 +93,7 @@ def chat_completions():
                 "args" : { "code": "print(42)" },
             },
             "thoughts": {
-                "plan": "User is to replace this.",
+                "plan": output1,
                 "speak": "This is where you speak to the requesting user. Replace the command above and this text with your results",
                 "criticism": "todo",
                 "reasoning" : json.dumps(docker_controller.inspect()),
