@@ -1,10 +1,12 @@
-from lollms.apps.console import Conversation
+#from lollms.apps.console import Conversation
 import sys
-from  ai_ticket.events.inference import on_event
+#from  ai_ticket.events.inference import on_event
+
+
 import time
 maxtry=10
 import dirtyjson
-import streamlit as st
+#import streamlit as st
 from collections import deque
 from pathlib import Path
 import json
@@ -142,146 +144,18 @@ def wrap(x):
     return data
 
 
-class MyConversation(Conversation):
-    def __init__(self, cfg=None):
-        super().__init__(cfg, show_welcome_message=False)
-        self.text_ring_buffer = deque()  # Ring buffer to hold user responses
-
-    def read_input_file(self, file_path):
-        with open(file_path, "r") as file:
-            lines = file.readlines()
-
-            lines = refactor_into_fiber_bundles(lines, BUNDLES)
-
-            with open("debug.txt", "w") as fo:
-                for line in lines:
-                    fo.write("|\n".join(line))
-        for line in lines:
-            self.text_ring_buffer.append(
-                self.personality.user_message_prefix + "\n".join(line)
-            )
-        print("start COUNT",len(self.text_ring_buffer))
-
-    def gen_rewrite(self):
-        topic = "Snippet"
-        target= "Protobuf Server"
-        return random.choice(
-            [
-                f"Transform this {topic} into a Python code representation of a {target}.",
-                f"Generate a Python code snippet for a {target} that implements this {topic}.",
-                f"Craft a Python implementation of a {target} that embodies the essence of this {topic}.",
-            ]
-        )
-
-    def start_conversation2(self):
-        count = 0
-        print("COUNT",len(self.text_ring_buffer))
-
-        while True:
-            if len(self.text_ring_buffer) <= 0:
-                print("No more user input to process.")
-                return
-
-            line = feed_text = self.text_ring_buffer.popleft()
-
-            count = count + 1
-            print(f"json.aline_{count:05}.__input_line__ = {json.dumps(line.strip())};")
-            for name, key in flatten.items():
-
-                person = prolog 
-
-                rewrite = self.gen_rewrite() + ":\n\nOriginal Term/Statement: "
-                data = (
-                    person
-                    + key
-                    + rewrite
-                    + line
-                    + ". Please in your own words:"
-                )
-
-                try:
-                    newt = []
-
-                    maxtry=6
-                    for atry in range(maxtry):
-                        output = self.safe_generate(wrap(data + f"try {atry}/{maxtry}"), callback=self.callback)
-                        if DEBUG:
-                            print("OUT" + output)
-                        if output not in seen:
-                            seen[output]=1
-                            print(
-                                f"json.aline_{count:05}_A.{name} = {json.dumps(output.strip())};"
-                            )
-                            newt.append(output)
-
-                        newt2 = []
-                        for atry in newt:
-                            refl1 = "Thank you. Here is a cookie. "
-
-                            output2 = self.safe_generate(
-                                wrap(data + atry + refl1), callback=self.callback
-                            )
-                            if output2 not in seen and output2 not in [output]:
-                                seen[output2]=1
-                                print(
-                                    f"json.aline_{count:05}_B.{name} = {json.dumps(output.strip())};"
-
-                                )
-                                newt2.append(output2)
-                                                    
-                        for output2 in newt2:
-                            data3 = output2
-
-                            for prompt in (
-                                    "Please rewrite as an instruction template",
-                                    "Please rewrite creativly",
-                                    "Listt the 96 concepts found in the following",
-                            ):
-                                output3 = self.safe_generate(
-                                    prompt + " " + wrap(data3), callback=self.callback
-                                )
-                                if output3 not in seen and output3 not in [
-                                        output,
-                                        output2,
-                                ]:
-                                    seen[output3]=1
-                                    print(
-                                        f"json.aline_{count:05}_C.{name} = {json.dumps(output.strip())};"
-                                    )
-                        else:
-                            if DEBUG:
-                                print("-", output2)
-                    else:
-                        if DEBUG:
-                            print("-", output)
-
-                except Exception as e:
-                    stre = json.dumps(str(e)).replace(username,"USER")
-                    print(f"json.aline_{count:05}_ERRROR.{name} = {stre}")
-                    raise e
-
-    def callback(self, text, type=None, metadata: dict = {}):
-        if DEBUG:
-            print("DBG:" + text, end="")
-            sys.stdout.flush()
-        return True
 
 # set up the Flask application
 app = Flask(__name__)
 
 #if __name__ == "__main__":
 
-cv = MyConversation(Path("config.yaml"))
-    # input_file_path = "user_input.txt"
-    # try:
-    #     cv.read_input_file(input_file_path)
 
-    #     cv.start_conversation2()
-    # except Exception as e:
-    #     print(e)
-    # raise e
 models = {}
 
+def on_event(e):
+    print(e)
+    return "Debug" +str(e)
 
 @app.route("/v1/models", methods=['GET'])
 def models():
@@ -386,7 +260,7 @@ def chat_completions():
 
     #for atry in range(maxtry):
     output = None
-    output1 = cv.safe_generate(json.dumps(data))
+    output1 = json.dumps(data)
         #try:
         #    print("output", output1)
         #    dd = dirtyjson.loads(output1)
@@ -540,5 +414,5 @@ def v1_engines():
     }))
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
 
